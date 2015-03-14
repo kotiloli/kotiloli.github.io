@@ -26,5 +26,8 @@ microp.config(function($routeProvider) {
         })
         .when('/ch5', {
             templateUrl : 'ch5.html'
-        });
+        })
+        .otherwise({
+        redirectTo: '/ch1.html'
+    });
 });

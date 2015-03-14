@@ -1,19 +1,16 @@
 /**
  * Created by KO on 11.03.2015.
  */
-var myApp = angular.module('myApp', ['ngRoute']);
+var homeApp = angular.module('homeApp', ['ngRoute']);
 
 // configure our routes
-myApp.config(function($routeProvider) {
+homeApp.config(function($routeProvider) {
     $routeProvider
 
-        // route for the home page
         .when('/', {
             templateUrl : 'welcome.html'
-            //controller  : 'mainController'
         })
 
-        // route for the about page
         .when('/microp', {
             templateUrl : 'pages/microp.html'
         })
