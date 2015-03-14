@@ -1,0 +1,40 @@
+always @(posedge clk)
+case (state)
+begin
+	FETCH:
+		IR[11:0]<=MemIn[11:0];
+		AR <= AR + 1;
+		PC <= PC + 1;
+		case ( MemIn[15:12] )
+		begin
+			0x1 :  state <= LDI
+			0x2 :  state <= LD1
+			0x3 :  state <= ST1
+			0x4 :  case ( ZF )
+			       begin
+                               		0 : state <= FETCH
+			       		1 : state <= JMP
+			       end
+			0x5 :  state <= JMP
+			0x7 :  state <= ALU
+		end
+	LDI:
+		Reg[IR[1:0]] <= MemIn
+		AR <= AR + 1;
+		PC <= PC + 1;
+		state <= FETCH;
+	LD1:    
+		AR <= Reg[IR[]]
+		state <= LD2
+	LD2:    
+		Reg[IR[1:0] <= MemIn
+		AR <= PC
+		state <= FETCH
+	ST1:	
+		AR <= Reg[IR[]]
+		state <= ST2
+	ST2: 	
+		MemOut <= Reg[IR[]]
+		state <= FETCH
+	JZ:	
+		case ( zf )  	

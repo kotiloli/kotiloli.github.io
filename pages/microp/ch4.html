@@ -1,0 +1,350 @@
+<div>
+  <h1>
+    5.PUSH, POP, CALL and RET instructions
+  </h1>
+<p>
+  Note that all these operations are stack-related. Hence, we
+  have to implement a stack before we implement these
+  instructions.
+</p>
+  <h2>
+    5.1 Stack and Flags Registers
+  </h2>
+  
+<ul>
+  <li>7th register of the Register bank will be implemented as
+    SP register.
+  </li>
+  <li>6th register of the Register bank will be implemented as
+    stack register.
+  </li>
+  <li style="list-style: none">
+    <br />
+    By putting these Special purpose registers into register
+    bank, we gain the advantage of treating them as normal
+    registers. Hence loading/storing them will become possible.
+    But, by doing this, we reduce the number of available GPR's
+    by two.<br />
+     
+      <h2>
+        5.2 PUSH and POP instructions
+      </h2>
+      The assembly for these instructions are<br />
+    where x is a number in the range 0-7 which denotes a
+    register. The machine code is <img src=
+                                               "PUSH_POP_instructions.bmp" /><br />
+    <h4>
+      State diagram for PUSH
+    </h4>
+    <ol>
+      <li>AR &lt;- SP ( ARLD, MUX1=SPOUT, MUX2= frommux1 ),
+      </li>
+      <li>M[AR] &lt;- Reg , AR &lt;- PC , SP-- ( MEMWT,
+        MUX1=LEFTOUT, ARLD, MUX2 = frompc, SP-- )
+      </li>
+    </ol>
+    <h4>
+      State diagram for POP
+    </h4>
+    <ol>
+      <li>SP++
+      </li>
+      <li>AR &lt;- SP ( ARLD, MUX1=SPOUT, MUX2= frommux1 )
+      </li>
+      <li>Reg &lt;- M[AR] , AR &lt;- PC ( REGWT, MUX1=MEMOUT,
+        ARLD, MUX2 = frompc )
+      </li>
+    </ol>
+     
+      <h2>
+        5.3 CALL and RET instructions
+      </h2>
+      The assembly for these instructions are<br />
+    where x is a label. Of course, during the assembly, the
+    label will be converted into an 12-bit address by the
+    assembler. The machine code is <img src=
+                                                "CALL_RET_instructions.bmp" /><br />
+    Call instruction is executed in two steps: First, the
+    current PC (which points to the location of the CALL
+    instruction plus 1) is pushed into the stack This is the
+    address of the instruction following the CALL instruction.
+    Next, it jumps to the address ( PC + 12 bit data of the
+    call instruction). Note that the second part of the CALL is
+    done exactly like the JUMP/JZ instructions.<br />
+    RET will "pop" the top of the stack into PC.<br />
+    For a CALL/RET sequence to work correctly, the number of
+    pushes and pops executed between the CALL and RET must be
+    equal.
+    <h4>
+      State diagram for CALL
+    </h4>
+    <ol>
+      <li>AR &lt;- SP, SP-- ( ARLD, MUX1=SPOUT, MUX2= frommux1
+        ),
+      </li>
+      <li>M[AR] &lt;- PC ( MEMWT, MUX1=fromPC)
+      </li>
+      <li>AR, PC &lt;- PC + INSTR[jumpaddr]
+      </li>
+    </ol>
+    <h4>
+      State diagram for RET
+    </h4>
+    <ol>
+      <li>SP++
+      </li>
+      <li>AR &lt;- SP ( ARLD, MUX1=SPOUT, MUX2= frommux1 )
+      </li>
+      <li>AR, PC &lt;- Mem[AR] ( ARLD, PCLD, MUX1=MEMOUT, MUX2
+        = frommux1, MUX3=frommux1 )
+      </li>
+    </ol>
+     
+      <h2>
+        5.4 State diagram for PUSH, POP, CALL, RET
+      </h2>
+      
+     
+      <h2>
+        5.5 New CPU with SP and FLAGS registers
+      </h2>
+      register bank has 3 new control signal inputs, in
+    addition to REGWRITE: ZFWRITE, SP++, SP--. This is natural,
+    as both FLAGS and SP registers are in register bank.
+     
+      <h2>
+        5.6 Microcode
+      </h2>
+      
+    <table>
+      <tr>
+        <td>
+              <pre>
+PUSH x 
+POP  x 
+</pre>
+        </td>
+      </tr>
+      <tr>
+        <td>
+              <pre>
+CALL x 
+RET   
+</pre>
+        </td>
+      </tr>
+      <tr>
+        <td></td>
+      </tr>
+      <tr>
+        <td>
+          Address
+        </td>
+        <td>
+          FETCH
+        </td>
+        <td>
+          MEMWT
+        </td>
+        <td>
+          IRLOAD
+        </td>
+        <td>
+          ARLOAD
+        </td>
+        <td>
+          AR++
+        </td>
+        <td>
+          PCLOAD
+        </td>
+        <td>
+          PC++
+        </td>
+        <td>
+          ZFLOAD
+        </td>
+        <td>
+          REGLOAD
+        </td>
+        <td>
+          MUX[2:0]
+        </td>
+        <td>
+          ARMUX[1:0]
+        </td>
+        <td>
+          sp++
+        </td>
+        <td>
+          sp--
+        </td>
+        <td>
+          retmux
+        </td>
+        <td>
+          next address[5:0]
+        </td>
+      </tr>
+      <tr>
+        <td>
+          32
+        </td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>
+          1
+        </td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>
+          100
+        </td>
+        <td>
+          00
+        </td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>
+          33
+        </td>
+      </tr>
+      <tr>
+        <td>
+          33
+        </td>
+        <td></td>
+        <td>
+          1
+        </td>
+        <td></td>
+        <td>
+          1
+        </td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>
+          001
+        </td>
+        <td>
+          01
+        </td>
+        <td></td>
+        <td>
+          1
+        </td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>
+          34
+        </td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>
+          33
+        </td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>
+          33
+        </td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>
+          33
+        </td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>
+          33
+        </td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+    </table>
+  </li>
+</ul>
+</div>

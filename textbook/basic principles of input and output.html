@@ -1,0 +1,17 @@
+<html> 
+<h1> BASIC PRINCIPLES OF INPUT-OUTPUT  </h1>
+There are three kinds of I/O: unsynchronized, synchronized with polling, synchronized with interrupts.<br>
+
+<h2> Unsynchronized I/O </h2>
+In unsynchronized I/O, the I/O device has some data registers and nothing else 
+<h3>Unsynchronized input devices</h3>
+We simply read the data reg. We can read the same data many times without being aware of it.
+<h3>Unsynchronized output devices</h3>
+We simply write to the data reg. We can write to the reg without the output device to be ready, causig data to be lost. There is no way of being aware whether the output device is ready or not..
+<h2> Synchronization via Polling </h2>
+We have a status reg. in addition to data reg. There is a READY bit in the status reg, and synchronization is done with the help of that bit.
+<h3>Polled input devices</h3>
+Whenever the input device has new data, it puts that data into its data reg and makes the READY bit in its status reg 1. When CPU reads that data, READY bit in the status reg. becomes 1.
+<h3>Polled output devices</h3>
+When the output device is ready to accept new data, it makes the READY bit in its status reg 1. When CPU writes new data into the data reg, the device becomes busy till it consumes that data and READY bit in its status reg becomes 0.
+</html>

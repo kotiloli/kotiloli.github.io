@@ -1,0 +1,612 @@
+<div>
+  <h1>
+    1. THE INSTRUCTION SET
+  </h1>The processor we will develop has the following properties
+  <h2>
+    1.1 Basic Architecture
+  </h2>
+  <ul>
+    <li>16 Bit data bus
+    </li>
+    <li>12 bit address bus. Processor can address 4K of memory.
+    </li>
+    <li>4 general purpose registers (GPR's). Will be expanded to 8
+      later.
+    </li>
+    <li>4 special purpose registers: Program Counter (PC), Address
+      Register (AR), Instruction Register (IR), FLAGS register. Stack
+      pointer (SP) and stack-related operations (PUSH, POP, CALL,
+      RET) will be added later.
+    </li>
+  </ul>Two addressing modes will be used:
+  <ul>
+    <li>Register indirect: Uses the contents of a general purpose
+      register as a pointer to a memory location(used by load/store
+      instructions)
+    </li>
+    <li>PC relative: Adds the offset contained in the instruction
+      to the contents of PC to obtain a pointer to a memory location
+      (used by jump instructions)
+    </li>
+  </ul>
+  <h2>
+    1.2 Difference between assembly language and machine code
+  </h2>In order to understand what is coming, the student must
+  remember the difference between the assembly language and machine
+  code.
+  <h2>
+    1.3 Instruction set
+  </h2>Opcodes are 4 bits, and there are 16 different instruction
+  types
+  <table border="1">
+    <tr>
+      <th>
+        Opcode (in hexadecimal)
+      </th>
+      <th>
+        Opcode Mnemonic
+      </th>
+      <th>
+        Instruction
+      </th>
+    </tr>
+    <tr>
+      <td>
+        1
+      </td>
+      <td>
+        LDI
+      </td>
+      <td>
+        Load Immediate
+      </td>
+    </tr>
+    <tr>
+      <td>
+        2
+      </td>
+      <td>
+        LD
+      </td>
+      <td>
+        load
+      </td>
+    </tr>
+    <tr>
+      <td>
+        3
+      </td>
+      <td>
+        ST
+      </td>
+      <td>
+        store
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>
+        4
+      </td>
+      <td>
+        JZ
+      </td>
+      <td>
+        jump if zero
+      </td>
+    </tr>
+    <tr>
+      <td>
+        5
+      </td>
+      <td>
+        JMP
+      </td>
+      <td>
+        Unconditional jump
+      </td>
+    </tr>
+    <tr>
+      <td>
+        6
+      </td>
+      <td>
+        Unused
+      </td>
+      <td>
+        Unused
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+    </tr>
+    <tr>
+      <td>
+        7
+      </td>
+      <td>
+        ADD, SUB, AND, OR, NOT<br />
+        XOR, MOV, INC, DEC
+      </td>
+      <td>
+        ALU operations
+      </td>
+    </tr>
+  </table>Later on, we will add the instructions PUSH, POP, CALL
+  and RET to this list. Note that all these instructions require a
+  stack, and therefore we have to implement a stack and a SP
+  register before implementing them.
+  <h2>
+    1.4 Instruction Formats
+  </h2>
+  <h3>
+    1.4.1 Format of the LD/ST instructions
+  </h3>In assembly language, these instructions are written as
+  where x and y are numbers between 0 and 3. LD x y will
+  <ol>
+    <li>Find the memory location whose address is contained in
+      register y
+    </li>
+    <li>Transfer the contents of that memory location into register
+      x.
+    </li>
+  </ol>The instruction ST x y does just the reverse, ie
+  <ol>
+    <li>Find the memory location whose address is contained in
+      register x
+    </li>
+    <li>Transfer the contents of register y to that memory
+      location.
+    </li>
+  </ol>A useful aid to memory is: Recall that in C/C++ assignments
+  the data always travels from left to right, ie, in count=x, the
+  value of the variable x is transferred to the variable count.
+  Similarly, in LD and ST operations, the register that determine
+  the source is always at the right and the the register that
+  determine the destination is always at the left.
+  <p>
+    The machine code for these instructions are 16-bits long and
+    has the following format: <img src="LD_ST_instructions.bmp" />
+  </p>
+  <p>
+    d in the figure means "don't care", as usual. In our examples
+    we will always fill don't care locations with 0's (and never
+    with 1's) for consistency, even though this does not matter in
+    practice.
+  </p><strong>Example:</strong>To illustrate the passage from
+  assembly language to machine code, we give some assembly language
+  LD/ST instructions on the left and their machine code
+  translations in hexadecimal on the right:
+  <table>
+    <tr>
+      <td>
+        <pre>
+  LD x y
+  ST x y
+</pre>
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+    </tr>
+    <tr>
+      <td>
+        <strong>Assembly</strong>
+      </td>
+      <td>
+        <strong>Machine code</strong>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        LD 2 1
+      </td>
+      <td>
+        200A
+      </td>
+    </tr>
+    <tr>
+      <td>
+        LD 3 2
+      </td>
+      <td>
+        2013
+      </td>
+    </tr>
+    <tr>
+      <td>
+        LD 2 2
+      </td>
+      <td>
+        2012
+      </td>
+    </tr>
+    <tr>
+      <td>
+        ST 3 1
+      </td>
+      <td>
+        3058
+      </td>
+    </tr>
+    <tr>
+      <td>
+        ST 1 3
+      </td>
+      <td>
+        30C8
+      </td>
+    </tr>
+    <tr>
+      <td>
+        ST 3 2
+      </td>
+      <td>
+        3098
+      </td>
+    </tr>
+  </table>Note that the same register can be both source and
+  destination. LDI 2,2 will load into register 2 the data whose
+  address is in register 2.
+  <h3>
+    1.4.2 Format of the LDI instructions
+  </h3>
+  <p>
+    The assembly language format for the LDI instruction is
+  </p>
+  <p>
+    LDI r x
+  </p>r denotes one of the general purpose registers, therefore it
+  is a number between 0 and 3. x is the 16-bit immediate data that
+  is to be loaded to this register. It can be in one of the three
+  different formats:
+  <ul>
+    <li>If x is a string, it denotes the address of a variable or a
+      label.<br />
+      If it denotes the address of a variable, there should be a
+      corresponding declaration on the .data section (.data section
+      will be explained later), where the string x must be
+      declared. For example, if we use LDI 2 COUNT, and if COUNT is
+      a variable, then, in the .data section, we must have some
+      declaration like COUNT: 5, where 5 is the initial value of
+      the variable count. LDI 2, COUNT will not load 5 into reg2,
+      but the address of the memory location where 5 is
+      stored.<br />
+      On the other hand, if we have LDI 2, LOOP, and if LOOP is a
+      label, there must be some instruction in the program labeled
+      with LOOP, and the address corresponding to this label will
+      be loaded into register 2.<br />
+      Note that in assembly language both LOOP or COUNT are
+      strings, while in machine code they must be 16-bit (in case
+      of variable) or 12-bit (in case of label) numbers. The
+      conversion between strings and numbers is done by the
+      assembler.
+    </li>
+    <li>LDI 2 40 will load the decimal value of 40 into reg2
+    </li>
+    <li>LDI 2 0x40 will load hexadecimal value of 40 into reg2.
+    </li>
+  </ul>
+  <p>
+    The machine code format of LDI instruction is as follows:
+  </p>
+  <p>
+    <img src="LDI_instruction.bmp" />
+  </p><strong>Example:</strong> Some assembly language LDI
+  instructions are given on the left and their machine code
+  translations in hexadecimal are provided on the right:
+  <p>
+    <br />
+  </p>
+  <h3>
+    1.4.3 Format of the JZ/JMP instructions
+  </h3>
+  <p>
+    The assembly language format for JZ/JMP instructions are
+  </p>JMP x<br />
+  JZ x<br />
+  <br />
+  where x is a string which is a label in the program (More on
+  labels later). So, if we use the instruction<br />
+  <br />
+  JMP LOOP<br />
+  <br />
+  then LOOP must be defined as a label somewhere in the program.
+  <p>
+    The machine code formats of JMP/JZ instructions are as follows:
+  </p><img src="JMP_JZ_instructions.bmp" /><br />
+  Note that in assembly language x is a string, while in machine
+  code x is an 12 bit number. The conversion between these two
+  forms is done by the assembler, according to the formula (address
+  of the label)-(address of JUMP/JZ instruction)+1. The operation
+  is done in twos complement notation, and if the label occurs
+  before the JUMP/JZ instruction, we get a negative result.
+  <h3>
+    1.4.4 Format of the Arithmetical and Logical instructions
+  </h3>There are 9 Arithmetical/Logical instructions. Their
+  assembly language format and meaning is summarized in the
+  following table:
+  <table border="1">
+    <tr>
+      <td>
+        <strong>Assembly</strong>
+      </td>
+      <td>
+        <strong>Machine code</strong>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        LDI 2 0x1A
+      </td>
+      <td>
+        1002<br />
+        001A
+      </td>
+    </tr>
+    <tr>
+      <td>
+        LDI 3 0x2BA4
+      </td>
+      <td>
+        1003<br />
+        2BA4
+      </td>
+    </tr>
+    <tr>
+      <td>
+        LDI 2 count
+      </td>
+      <td>
+        Not possible to translate into machine code till the<br />
+        assembler resolves the symbol "count"
+      </td>
+    </tr>
+    <tr>
+      <td>
+        LDI 0 78
+      </td>
+      <td>
+        1000<br />
+        004E
+      </td>
+    </tr>
+    <tr>
+      <td>
+        LDI 3 -47
+      </td>
+      <td>
+        1003<br />
+        FFD1
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+    </tr>
+    <tr>
+      <td>
+        ASSEMBLY
+      </td>
+      <td>
+        EXPLANATION
+      </td>
+      <td>
+        C EQUIVALENT
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+    </tr>
+    <tr>
+      <td>
+        ADD r1 r2 r3
+      </td>
+      <td>
+        Adds registers r2 and r3, puts the result into register r1
+      </td>
+      <td>
+        r1=r2+r3
+      </td>
+    </tr>
+    <tr>
+      <td>
+        SUB r1 r2 r3
+      </td>
+      <td>
+        Subtracts register r3 from register r2, puts the result
+        into register r1
+      </td>
+      <td>
+        r1=r2-r3
+      </td>
+    </tr>
+    <tr>
+      <td>
+        AND r1 r2 r3
+      </td>
+      <td>
+        Ands registers r2 and r3, puts the result into register r1
+      </td>
+      <td>
+        r1=r2&amp;r3
+      </td>
+    </tr>
+    <tr>
+      <td>
+        OR r1 r2 r3
+      </td>
+      <td>
+        Or's registers r2 and r3, puts the result into register r1
+      </td>
+      <td>
+        r1=r2|r3
+      </td>
+    </tr>
+    <tr>
+      <td>
+        XOR r1 r2 r3
+      </td>
+      <td>
+        Xor's registers r2 and r3, puts the result into register r1
+      </td>
+      <td>
+        r1=r2^r3
+      </td>
+    </tr>
+    <tr>
+      <td>
+        NOT r1 r2
+      </td>
+      <td>
+        Negates the contents of registers r2, puts the result into
+        register r1
+      </td>
+      <td>
+        r1=!r2
+      </td>
+    </tr>
+    <tr>
+      <td>
+        MOV r1 r2
+      </td>
+      <td>
+        Transfers the contents of registers r2 into register r1
+      </td>
+      <td>
+        r1=r2
+      </td>
+    </tr>
+    <tr>
+      <td>
+        INC r1
+      </td>
+      <td>
+        Increments the contents of registers r1
+      </td>
+      <td>
+        r1++
+      </td>
+    </tr>
+    <tr>
+      <td>
+        DEC r1
+      </td>
+      <td>
+        Decrements the contents of registers r1
+      </td>
+      <td>
+        r1--
+      </td>
+    </tr>
+  </table>
+  <p>
+    Each ALU instruction has an associated ALU CODE, which is a
+    4-bit binary number. Note that as we have 9 ALU instructions,
+    ALU CODE must be at least 4 bits wide
+  </p>
+  <table border="1">
+    <tr>
+      <td>
+        Instruction
+      </td>
+      <td>
+        ALU CODE
+      </td>
+    </tr>
+    <tr>
+      <td>
+        ADD
+      </td>
+      <td>
+        0000
+      </td>
+    </tr>
+    <tr>
+      <td>
+        SUB
+      </td>
+      <td>
+        0001
+      </td>
+    </tr>
+    <tr>
+      <td>
+        AND
+      </td>
+      <td>
+        0010
+      </td>
+    </tr>
+    <tr>
+      <td>
+        OR
+      </td>
+      <td>
+        0011
+      </td>
+    </tr>
+    <tr>
+      <td>
+        XOR
+      </td>
+      <td>
+        0100
+      </td>
+    </tr>
+    <tr>
+      <td>
+        NOT
+      </td>
+      <td>
+        0101
+      </td>
+    </tr>
+    <tr>
+      <td>
+        MOV
+      </td>
+      <td>
+        0110
+      </td>
+    </tr>
+    <tr>
+      <td>
+        INC
+      </td>
+      <td>
+        0111
+      </td>
+    </tr>
+    <tr>
+      <td>
+        DEC
+      </td>
+      <td>
+        1000
+      </td>
+    </tr>
+  </table>ALU CODE field identifies the mathematical operation
+  performed by the instruction. As 9 operations, this field mus be
+  at least 4 bits wide.
+  <h4>
+    a) Machine code format of INC and DEC instructions
+  </h4>These are single argument instructions. Their machine code
+  format is:
+  <p>
+    <img src="INC_DEC_instructions.bmp" />
+  </p>
+  <h4>
+    b) Machine code format of MOV and NOT instructions
+  </h4>These are two argument instructions. Their machine code
+  format is:
+  <p>
+    <img src="MOV_NOT_instructions.bmp" />
+  </p>
+  <h4>
+    c) Machine code format of ADD, SUB, AND, OR, XOR instructions
+  </h4>
+  <p>
+    These are three argument instructions. Their machine code
+    format is:
+  </p><img src="ADD_SUB_etc_instructions.bmp" />
+</div>

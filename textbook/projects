@@ -1,0 +1,13 @@
+Project 1:  Implement The processor designed in class with 8 registers
+
+Project 2: Add PUSH, POP, CALL and RET instructions to the processor designed in project 1. In addition, you must have
+              - A 2K memory (0-2K in memory map)
+              - An 16-bit switchboard  (At 4K)
+              - 2 8-bit seven segment displays (Also at 4K)
+to the board. 
+
+You should reflect all changes in the switchboard immediately to 7-segment displays.
+
+Note that 7-segment displays are actually 8-segments (ie, the additional dot).
+
+project 3: Logisim simple switch.
