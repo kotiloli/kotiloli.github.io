@@ -8,8 +8,8 @@ myApp.config(function($routeProvider) {
     $routeProvider
 
         // route for the home page
-        .when('/', {
-            templateUrl : 'dummy.html'
+        .when('/welcome', {
+            templateUrl : 'welcome.html'
             //controller  : 'mainController'
         })
 
