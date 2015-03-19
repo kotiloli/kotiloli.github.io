@@ -8,9 +8,11 @@
   <meta name="author" content="">
   <title></title>
 
-
+  <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="../lib/bootstrap-3.3.2-dist/css/bootstrap.css" >
   <link rel="stylesheet" href="../css/home.css"/>
+  <link rel="stylesheet" href="../lib/font-awesome-4.3.0/css/font-awesome.css"/>
+  <link rel="stylesheet" href="microp.css"/>
 
   <script src="../lib/jquery.js"></script>
   <script src="../lib/bootstrap-3.3.2-dist/js/bootstrap.min.js"></script>
@@ -21,52 +23,73 @@
 </head>
 <body ng-app="microp">
 
-<div id="wrap">
+<div id="wrap" class="container">
 
   <div id="header">
     <div ng-include src="'../pages/header.html'"></div>
   </div>
 
-
   <div class="row">
+
     <!-- Sidebar -->
-    <div class="col-sm-2">
-      <ul >
+    <div class=" nav navbar-default col-md-2">
+      <ul class="nav sidebar">
         <li>
-          <a href="#ch1">Lesson #1</a>
+          <a href="#"><span class="fa fa-1x fa-home"/> COURSE HOME</a>
         </li>
         <li>
-          <a href="#ch2">Lesson #2</a>
+          <a href="#">ANNOUNCEMENTS</a>
         </li>
         <li>
-          <a href="#ch3">Lesson #3</a>
+          <a href="#">SYLLABUS</a>
         </li>
         <li>
-          <a href="#ch4">Lesson #4</a>
+          <a href="#">ASSIGNMENTS</a>
         </li>
         <li>
-          <a href="#ch5">Lesson #5</a>
+          <a href="" class="tree-toggle"><span class="fa fa-1x fa-file-text-o"/> LECTURE NOTES <span class="fa fa-1x fa-caret-down"/></a>
+          <ul class="nav tree fa" style="display:none;">
+            <li><a href="#/ch1">Instruction Set</a></li>
+            <li><a href="#/ch2">Assembler</a></li>
+            <li><a href="#/ch3">Hardware Structure</a></li>
+            <li><a href="#/ch4">Extending Register Size</a></li>
+            <li><a href="#">Push, Pop, Call and Ret</a></li>
+            <li><a href="#">Polling</a></li>
+            <li><a href="#">Address Decoding</a></li>
+            <li><a href="#">Introduction to Verilog</a></li>
+            <li><a href="#">Verilog CPU Design</a></li>
+            <li><a href="#">Introduction to Interrupts</a></li>
+            <li><a href="#">Interrupt Design with Logisim</a></li>
+            <li><a href="#">Interrupt Design with Verilog</a></li>
+            <li style="display: none;"><a href="#">Privilage</a></li>
+            <li style="display: none;"><a href="#">Context Switch</a></li>
+            <li style="display: none;"><a href="#">A Simple Paging System-1</a></li>
+            <li style="display: none;"><a href="#">A Simple Paging System-2</a></li>
+            <li style="display: none;"><a href="#">WishBone Architecture</a></li>
+          </ul>
         </li>
         <li>
-          <a href="#">Lesson #6</a>
+          <a href="#"><span class="fa fa-1x fa-edit"/> EXAMS</a>
         </li>
         <li>
-          <a href="#">Lesson #7</a>
+          <a href="#"><span class="fa fa-1x fa-download"/> DOWNLOAD COURSE MATERIALS</a>
         </li>
       </ul>
     </div>
+      <!-- Sidebar -->
 
     <!-- Page Content-->
-    <div class="col-sm-10">
+    <div class="col-md-9">
       <div ng-view></div>
-    </div>
+    </div><!-- Page Content-->
+
+  </div>
 </div>
 
-  <!-- Footer -->
-  <div id="footer">
-    <div ng-include src="'../pages/footer.html'"> </div>
-  </div>
-
+<!-- Footer -->
+<div id="footer">
+  <div ng-include src="'../pages/footer.html'"> </div>
 </div>
 </body>
+
 </html>

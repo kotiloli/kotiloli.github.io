@@ -1,0 +1,16 @@
+body{
+    font-family: 'Lato', sans-serif ;
+    font-family: inherit;
+    /*color: #404853;*/
+}
+
+.tree  {
+    padding:3px 3px 3px 20px;
+}
+.tree > li > a {
+    padding: 4px 4px 4px 4px;
+}
+
+.sidebar > li, a{
+    background-color: #fafbf2;
+}

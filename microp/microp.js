@@ -1,22 +1,25 @@
 /**
  * Created by KO on 13.03.2015.
  */
-/**
- * Created by KO on 11.03.2015.
- */
+
+$( document ).ready(function() {
+    $('.tree-toggle').click(function () {
+        $(this).parent().children('ul.tree').toggle(200);
+    });
+});
 var microp = angular.module('microp', ['ngRoute']);
 
 // configure our routes
 microp.config(function($routeProvider) {
     $routeProvider
         .when('/', {
-            templateUrl : 'ch1.html'
+            templateUrl : 'ch1.html',
         })
         .when('/ch1', {
-            templateUrl : 'ch1.html'
+            templateUrl : 'ch1.html',
         })
         .when('/ch2', {
-            templateUrl : 'ch2.html'
+            templateUrl : 'ch2.html',
         })
         .when('/ch3', {
             templateUrl : 'ch3.html'
@@ -31,3 +34,4 @@ microp.config(function($routeProvider) {
         redirectTo: '/ch1.html'
     });
 });
+
