@@ -15,8 +15,6 @@ body{
     background-color: #fafbf2;
 }
 
-
-
 h1{
     font-size:24px;
 }
@@ -53,12 +51,12 @@ pre{
     font-size: 75%;
 }
 
-code {
+:not(pre) > code {
     font-family: Consolas, monospace;
     font-size: 12px;
     display: inline-block;
-    /*border: 1px solid #EAEAEA;*/
-    background: #d2d2d2;
+    border: 1px solid #b6b6b6;
+    background: #f4f4f4;
     color: #3e3e3e;
     padding: 0px 10px 0px 10px;
     line-height: 15px;

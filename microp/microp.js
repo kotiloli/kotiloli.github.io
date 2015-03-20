@@ -22,7 +22,7 @@ microp.config(function($routeProvider) {
             templateUrl : 'ch2-assembler.html'
         })
         .when('/ch3', {
-            templateUrl : 'ch3.html'
+            templateUrl : 'ch3-hardware.html'
         })
         .when('/ch4', {
             templateUrl : 'ch4.html'
