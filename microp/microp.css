@@ -14,3 +14,60 @@ body{
 .sidebar > li, a{
     background-color: #fafbf2;
 }
+
+
+
+h1{
+    font-size:24px;
+}
+h2{
+    font-size:22px;
+}
+h3{
+    font-size:20px;
+}
+h4{
+    font-size:18px;
+}
+.padding2{
+    padding-left: 10px;
+}
+.padding3{
+     padding-left: 20px;
+}
+.padding4{
+    padding-left: 30px;
+}
+.table > thead > tr > th,
+.table > tbody > tr > th,
+.table > tfoot > tr > th,
+.table > thead > tr > td,
+.table > tbody > tr > td,
+.table > tfoot > tr > td{
+    padding: 4px 8px 4px 8px;
+}
+
+pre{
+    border: solid 1px #e1e4e5;
+    background: #F0F0F0;
+    font-size: 75%;
+}
+
+code {
+    font-family: Consolas, monospace;
+    font-size: 12px;
+    display: inline-block;
+    /*border: 1px solid #EAEAEA;*/
+    background: #d2d2d2;
+    color: #3e3e3e;
+    padding: 0px 10px 0px 10px;
+    line-height: 15px;
+}
+
+img{
+    width: 80%;
+    height:auto;
+}
+
+
+

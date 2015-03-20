@@ -13,13 +13,13 @@ var microp = angular.module('microp', ['ngRoute']);
 microp.config(function($routeProvider) {
     $routeProvider
         .when('/', {
-            templateUrl : 'ch1.html',
+            templateUrl : 'home.html'
         })
         .when('/ch1', {
-            templateUrl : 'ch1.html',
+            templateUrl : 'ch1-inst_set.html'
         })
         .when('/ch2', {
-            templateUrl : 'ch2.html',
+            templateUrl : 'ch2-assembler.html'
         })
         .when('/ch3', {
             templateUrl : 'ch3.html'
