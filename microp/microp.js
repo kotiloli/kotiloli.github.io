@@ -28,10 +28,10 @@ microp.config(function($routeProvider) {
             templateUrl : 'ch4.html'
         })
         .when('/ch5', {
-            templateUrl : 'ch5.html'
+            templateUrl : 'ch5-pushpop.html'
         })
         .otherwise({
-        redirectTo: '/ch1.html'
+        redirectTo: 'home.html'
     });
 });
 

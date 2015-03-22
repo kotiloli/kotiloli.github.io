@@ -67,5 +67,25 @@ img{
     height:auto;
 }
 
+sig{
+    padding: 2px 4px;
+    font-size: 110%;
+    color: #c7254e;
+    background-color: #f9f2f4;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-family: Menlo,Monaco,Consolas,"Courier New",monospace;
+}
+
+.rotate90{
+    -webkit-transform: rotate(90deg);
+    position: absolute;
+    text-align: center;
+}
+.extrasmall{
+    font-weight: bold;
+    font-size: 80%;
+}
+
 
 

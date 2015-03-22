@@ -1,7 +1,14 @@
 <div>
 <h1>3. HARDWARE STRUCTURE OF THE CPU </h1>
 <h2>3.1 SCHEMATIC OF THE CPU </h2>
-<h3>Register Bank and the ALU </h3>
+  .<br>
+  ..<br>
+  ..<br>
+  ..<br>
+  Register Bank and the ALU
+  ..<br>
+  ..<br>
+  ..<br>
 <h2>3.2 CPU as a FSM </h2>
 
 
@@ -12,7 +19,55 @@ Depending on the input (instruction coming from memory), it can go to LDI, LD1, 
 The rule is: When we start to execute an instruction, its address is ready at AR. Hence, a very important
 duty of every instruction is to put the address of the next instruction into AR before being completed.</p>
 
-FETCH: IRLOAD, PC++, AR++  <br><br>
+  <table class="table table-bordered">
+    <thead>
+    <tr>
+      <td>State</td>
+      <td>Active Signals</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>FETCH</td>
+      <td>IRLOAD, PC++, AR++</td>
+    </tr>
+    <tr>
+      <td>LDI</td>
+      <td>PC++, AR++, REGWT, MUX=frommem</td>
+    </tr>
+    <tr>
+      <td>LD1</td>
+      <td>ARLD, MUX=fromright, ARMUX=frommux</td>
+    </tr>
+    <tr>
+      <td>LD2</td>
+      <td> ARLD, MUX=frommem, ARMUX=fromPC , REGWT</td>
+    </tr>
+    <tr>
+      <td>ST1</td>
+      <td>ARLD, MUX=fromright, ARMUX=frommux</td>
+    </tr>
+    <tr>
+      <td>ST2</td>
+      <td>ARLD, ARMUX=fromPC, MUX=fromright, MWT</td>
+    </tr>
+    <tr>
+      <td>JZ</td>
+      <td> if (ZF==0) execute FETCH ELSE execute JMP </td>
+    </tr>
+    <tr>
+      <td>JMP</td>
+      <td>ARMUX=fromIR, ARLD, PCLD </td>
+    </tr>
+    <tr>
+      <td>ALU</td>
+      <td>MUX=fromALU, REGLD, ZFLD</td>
+    </tr>
+    </tbody>
+
+  </table>
+
+FETCH: IRLOAD, PC++, AR++
 
 LDI: PC++, AR++, REGWT, MUX=frommem <br><br>
 
@@ -27,6 +82,6 @@ JZ: if (ZF==0) execute FETCH ELSE execute JMP <br><br>
 JMP: ARMUX=fromIR, ARLD, PCLD <br><br>
 
 ALU: MUX=fromALU, REGLD, ZFLD
-<center><h2>3.4 CONTROL UNIT </h2></center>
+<h2>3.4 CONTROL UNIT </h2>
 
 </div>
