@@ -1,0 +1,123 @@
+<div>
+<h1>Introduction to interrupts</h1>
+<h2>The simplified view: A single IO device attached to CPU</h2>
+  <p>As a starter, we consider a single IO device connected to a processor. 
+  To use interrupts, the IO device nust have a new 1-bit output line, 
+  which we will call INT. The CPU must also have a new 1-bit input line, 
+  which is also called INT. These two lines are connected to each other. 
+  Therefore, by using the INT line, our IO device can send signals to CPU (see figure).
+  To a first approximation, the interrupts work like this:</p>
+  <div class="row"><img src="http://placehold.it/400x150" class="center-block"></div>
+
+<p><strong>If the IO device is an input device </strong><small>(Assume a keyboard)</small></p>
+  <ol>
+    <li> The input device acquired new data and must notify the CPU to read it.</li>
+    <li> It makes the interrupt pin 1.</li>
+    <li> CPU sees that its interrupt pin is 1. It realizes that there is new data to be read at the input device.</li>
+    <li> CPU stops the program it was executing, and reads the data register of the input device.</li>
+    <li> Input device lowers its INT pin to 0.</li>
+  </ol>
+
+<p><strong> If the IO device is an output device </strong><small>(Assume a printer)</small></p>
+  <p>For this case, consider a printer without buffer. When we write a character
+  to its data buffer, it will take a long time for this data to get printed.</p>
+  <ol>
+    <li> The input output device aprocessed its data and needs new data.</li>
+    <li> It makes the interrupt pin 1.</li>
+    <li> CPU sees that its interrupt pin is 1. It realizes that the output device consumed its data and needs new data.</li>
+    <li> CPU stops what it was doing, and writes the data register of the output device.</li>
+    <li> Output device lowers its INT pin to 0 and starts processing the new data.</li>
+  </ol>
+
+<h2>A more complicated view: Multiple IO device attached to CPU</h2>
+  <p>If there is more than one IO device, an additional problem appears: After receiving the interrupt,
+  the CPU must discover which IO device has sent it.</p>
+
+  <p>
+    To be precise, OR'ing the INT signals (figure) will not work, as the CPU will remain completely in the
+    dark about who sent the interrupt. This problem may be solved by polling after receiving the interrupt, but there may
+    be a lot of IO devices in a crowded system, and polling will consume time.
+  </p>
+  <p>
+    Another solution may be to put many INT pins on the CPU and connect each to the INT pin of a separate IO device. This
+    solution is not very practical, as there may be a lot of IO devices connected to CPU.
+  </p>
+  <p>
+    The solution adopted by many companies is not to route the INT pins of the IO devices to the CPU directly, but rather
+    route them to a special-purpose chip called a Programmabble Interrupt Controller (PIC).
+  </p>
+
+<h2> Controlling the interrupts</h2>
+  <p>
+    IF used for global masking-unmasking of interrupts. It is controlled by sti and cli instructions. When IF flag is set,
+    the CPU will not check the interrupt signal at the instruction boundaries.
+  </p>
+mask register <br>
+<h2> Nesting of Interrupts </h2>
+    Interrupt nesting may exhaust stack.
+<h2>The complete view </h2>
+  <p>
+    We add an IF flag to flag registers. When this flag is 1, interruts are enabled. When this flag is 0, interrupts are
+    disabled. This flag is controlled by two new instructions: <span class="instruction">STI</span> and
+    <span class="instruction">CLI</span>.
+  </p>
+
+  <p>
+    We will use a new chip (PIC = Programmable interrupt controller) to manage interrupts. This chip has a single mask
+    register.
+  </p>
+  <p>
+    Input and output devices must also have an INT pin. In input devices, this pin must be set when the device has new
+    data, reset when that data is read by the CPU. In output devices, this pin must be set when the device needs new
+    data, reset when that data is written into it by the CPU. For output devices, interrupt processing is generally
+    initiated by CPU.
+  </p>
+
+  <p><strong>The basic scenerio of an interrupt:</strong></p>
+<ol>
+  <li>
+    Somebody pressed a key at the keyboard. Scan code of the pressed key appeared in keyboard data reg, keyboard
+    status reg become 1, and keyboard raises its interrupt signal.
+  </li>
+  <li>
+    If one or more of its (unmasked) IRQ signals are raised, PIC raises its INT signal.
+  </li>
+  <li>
+    CPU receives the INT signal. If IF = 1, CPU waits till an instruction boundary (ie, waits till the current
+    instruction is finished), and then, rather than starting the next instruction, starts interrupt processing.
+  </li>
+  <li> CPU accepts the interrupt by sending an ACK  signal to PIC. At the same time, CPU disables further  interrupts by resetting the interrupt flag.  Note that interrupts are only checked at instruction boundaries.
+  <li>After receiving the ACK, the PIC sends the vector vector of the highest priority IRQ it received via the data bus. The data bus must be empty at this stage.
+  <li>CPU receives the vector. It now knows which device raised the interrupt and hence requires service. It pushes CS and flags. Then it then goes to IDT to retrieve the address of ISR of the I/O device. It jumps to that address.
+  <li>ISR is executed. It pushes all registers. Then it masks the current IRQ. This guarantees that we will never receive the same kind of interrupt while we are in the ISR.
+  <li>ISR reads the keyboard.  Keyboard status bit becomes 0, keyboard INT signal lowered.  After this, ISR generally sets the interrupt flag. This releases lower priority interrupts. Note that we will never receive the same kind of interrupts because of the mask register.
+  <li>CPU process the data. At this stage, it may receive other interrupts.
+  <li>ISR pops all the registers, unmasks the PIC and executes RETI. RETI instruction pops PC and flags from the stack. Execution of the user program resumes from where it lefts.
+    <h2>pic</h2>
+    note that our pic zeroes the INT pin when the associted IRQ is zeroed. this is not the normal behaviour, but acceptable, as the cpu must not accept any INT before the device is read, hence its IF is zero..
+</ol>
+<h2> Scenario for overlapping interrupts </h2>
+  <p>.....<br>......<br>......<br></p>
+<h2> Edge-Detected vs. Level-Detected interrupts </h2>
+  <p>.....<br>......<br>......<br></p>
+<h2> The microcode for interrupt (no privilece level changes)</h2>
+
+<ol>
+  <li> AR <span class="fa fa-long-arrow-left"/> SP </li>
+  <li> M[AR] <span class="fa fa-long-arrow-left"/> FLAGS, AR--, reg7-- </li>
+  <li> M[AR] <span class="fa fa-long-arrow-left"/> PC,  AR--, reg7--,  cli </li>
+  <li> INTACK, AR <span class="fa fa-long-arrow-left"/> vector + 0xf00 </li>
+  <li> PC <span class="fa fa-long-arrow-left"/> M[AR] , AR<span class="fa fa-long-arrow-left"/> M[AR] </li>
+</ol>
+
+<h2> The new instructions </h2>
+<h3> IRET </h3>
+<ol>
+  <li>reg7++</li>
+  <li>AR&#8592;reg7
+  <li>PC&#8592;MEM, AR++, reg7++</li>
+  <li>FLAGS&#8592;MEM, AR&#8592;PC</li>
+</ol>
+
+
+</div>

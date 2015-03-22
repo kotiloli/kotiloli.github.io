@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d7541dd7-0902-4dee-9802-ac81e94e58d3" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/microp/ch6-IO.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/microp/ch6-polling.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/microp/index.html" afterPath="$PROJECT_DIR$/microp/index.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/microp/ch8-interrupt-intro.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/microp/microp.css" afterPath="$PROJECT_DIR$/microp/microp.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/microp/microp.js" afterPath="$PROJECT_DIR$/microp/microp.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -29,108 +29,7 @@
     <favorites_list name="baranweb" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="ch2-assembler.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/microp/ch2-assembler.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-5.730769" vertical-offset="1636" max-vertical-offset="2244">
-              <caret line="105" column="85" selection-start-line="105" selection-start-column="85" selection-end-line="105" selection-end-column="85" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/microp/index.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-10.230769" vertical-offset="720" max-vertical-offset="1751">
-              <caret line="58" column="60" selection-start-line="58" selection-start-column="60" selection-end-line="58" selection-end-column="60" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ch6-IO.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/microp/ch6-IO.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-14.384615" vertical-offset="0" max-vertical-offset="493">
-              <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ch3.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/microp/textbook/ch3.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="119">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ch2-assembler.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/microp/textbook/ch2-assembler.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="284.42307" vertical-offset="7395" max-vertical-offset="8007">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="microp.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/microp/microp.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.72039473" vertical-offset="123" max-vertical-offset="833">
-              <caret line="33" column="33" selection-start-line="33" selection-start-column="33" selection-end-line="33" selection-end-column="33" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ch5-pushpop.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/microp/ch5-pushpop.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-7.8461537" vertical-offset="136" max-vertical-offset="4437">
-              <caret line="20" column="6" selection-start-line="20" selection-start-column="6" selection-end-line="20" selection-end-column="6" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ch6-io and polling.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/microp/textbook/ch6-io and polling.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-11.115385" vertical-offset="0" max-vertical-offset="765">
-              <caret line="17" column="24" selection-start-line="0" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ch6-polling.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/microp/ch6-polling.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-7.1923075" vertical-offset="0" max-vertical-offset="1462">
-              <caret line="11" column="59" selection-start-line="11" selection-start-column="59" selection-end-line="11" selection-end-column="59" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="basic principles of input and output.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/microp/textbook/basic principles of input and output.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-11.115385" vertical-offset="0" max-vertical-offset="391">
-              <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf />
   </component>
   <component name="Git.Settings">
     <option name="PREVIOUS_COMMIT_AUTHORS">
@@ -175,7 +74,6 @@
         <option value="$PROJECT_DIR$/pages/microp/index.html" />
         <option value="$PROJECT_DIR$/pages/header.html" />
         <option value="$PROJECT_DIR$/css/home.css" />
-        <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/welcome.html" />
         <option value="$PROJECT_DIR$/microp/ch1.html" />
         <option value="$PROJECT_DIR$/pages/loremTest.html" />
@@ -186,12 +84,14 @@
         <option value="$PROJECT_DIR$/microp/ch2-assembler.html" />
         <option value="$PROJECT_DIR$/microp/ch3-hardware.html" />
         <option value="$PROJECT_DIR$/microp/ch4.html" />
-        <option value="$PROJECT_DIR$/microp/microp.css" />
         <option value="$PROJECT_DIR$/microp/ch5-pushpop.html" />
         <option value="$PROJECT_DIR$/microp/ch6-polling.html" />
         <option value="$PROJECT_DIR$/microp/ch6-before-IO.html" />
         <option value="$PROJECT_DIR$/microp/index.html" />
         <option value="$PROJECT_DIR$/microp/microp.js" />
+        <option value="$PROJECT_DIR$/microp/microp.css" />
+        <option value="$PROJECT_DIR$/microp/ch8-interrupt-intro.html" />
+        <option value="$PROJECT_DIR$/index.html" />
       </list>
     </option>
   </component>
@@ -200,8 +100,7 @@
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="-8" />
-    <option name="y" value="-8" />
-    <option name="width" value="1378" />
+    <option name="width" value="1377" />
     <option name="height" value="744" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -336,7 +235,7 @@
       <recent name="C:\Users\KO\WebstormProjects\baranweb\js" />
     </key>
   </component>
-  <component name="RunManager" selected="JavaScript Debug.ch6-IO.html">
+  <component name="RunManager" selected="JavaScript Debug.index.html (3)">
     <configuration default="false" name="index.html (3)" type="JavascriptDebugType" factoryName="JavaScript Debug" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/baranweb/microp/index.html">
       <RunnerSettings RunnerId="JavascriptDebugRunner" />
       <ConfigurationWrapper RunnerId="JavascriptDebugRunner" />
@@ -412,8 +311,8 @@
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="JavaScript Debug.ch6-IO.html" />
-        <item index="1" class="java.lang.String" itemvalue="JavaScript Debug.index.html (3)" />
+        <item index="0" class="java.lang.String" itemvalue="JavaScript Debug.index.html (3)" />
+        <item index="1" class="java.lang.String" itemvalue="JavaScript Debug.ch6-IO.html" />
         <item index="2" class="java.lang.String" itemvalue="JavaScript Debug.ch5-pushpop.html" />
         <item index="3" class="java.lang.String" itemvalue="JavaScript Debug.ch1-instruction set.html" />
         <item index="4" class="java.lang.String" itemvalue="JavaScript Debug.loremTest.html" />
@@ -485,11 +384,17 @@
       <option name="project" value="LOCAL" />
       <updated>1426986245360</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Ch5 is  modified&#10;">
+      <created>1426988353281</created>
+      <option name="number" value="00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1426988353281</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1378" height="744" extended-state="0" />
+    <frame x="-8" y="0" width="1377" height="744" extended-state="0" />
     <editor active="false" />
     <layout>
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32861635" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -498,7 +403,7 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2496329" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" x="512" y="46" width="341" height="636" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24981631" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" x="512" y="46" width="341" height="636" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -542,13 +447,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/pages/header.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="94" max-vertical-offset="697">
-          <caret line="28" column="39" selection-start-line="28" selection-start-column="39" selection-end-line="28" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/qqq.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2652">
@@ -737,13 +635,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-16.884615" vertical-offset="156" max-vertical-offset="782">
-          <caret line="35" column="7" selection-start-line="35" selection-start-column="7" selection-end-line="35" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pages/loremTest.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="221" max-vertical-offset="1020">
@@ -814,14 +705,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/microp/microp.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="973" max-vertical-offset="1649">
-          <caret line="86" column="17" selection-start-line="86" selection-start-column="17" selection-end-line="86" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/microp/ch3-hardware.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="170" max-vertical-offset="1564">
@@ -834,14 +717,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-1.9615384" vertical-offset="0" max-vertical-offset="170">
           <caret line="3" column="6" selection-start-line="3" selection-start-column="6" selection-end-line="3" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/microp/ch5-pushpop.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.8461537" vertical-offset="136" max-vertical-offset="4437">
-          <caret line="20" column="6" selection-start-line="20" selection-start-column="6" selection-end-line="20" selection-end-column="6" />
           <folding />
         </state>
       </provider>
@@ -872,16 +747,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/microp/textbook/ch6-io and polling.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-11.115385" vertical-offset="0" max-vertical-offset="765">
+        <state vertical-scroll-proportion="0.5079086" vertical-offset="0" max-vertical-offset="765">
           <caret line="17" column="24" selection-start-line="0" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/microp/ch6-polling.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.1923075" vertical-offset="0" max-vertical-offset="1462">
-          <caret line="11" column="59" selection-start-line="11" selection-start-column="59" selection-end-line="11" selection-end-column="59" />
           <folding />
         </state>
       </provider>
@@ -896,24 +763,64 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/microp/ch6-IO.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-14.384615" vertical-offset="0" max-vertical-offset="493">
+        <state vertical-scroll-proportion="0.6572935" vertical-offset="0" max-vertical-offset="569">
           <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/microp/index.html">
+    <entry file="file://$PROJECT_DIR$/microp/ch5-pushpop.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-10.230769" vertical-offset="720" max-vertical-offset="1751">
-          <caret line="58" column="60" selection-start-line="58" selection-start-column="60" selection-end-line="58" selection-end-column="60" />
+        <state vertical-scroll-proportion="-6.243986" vertical-offset="3855" max-vertical-offset="4437">
+          <caret line="13" column="4" selection-start-line="13" selection-start-column="4" selection-end-line="13" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/microp/ch6-polling.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.32864675" vertical-offset="0" max-vertical-offset="1462">
+          <caret line="11" column="59" selection-start-line="11" selection-start-column="59" selection-end-line="11" selection-end-column="59" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/microp/microp.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.72039473" vertical-offset="123" max-vertical-offset="833">
-          <caret line="33" column="33" selection-start-line="33" selection-start-column="33" selection-end-line="33" selection-end-column="33" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="225" max-vertical-offset="884">
+          <caret line="39" column="40" selection-start-line="39" selection-start-column="40" selection-end-line="39" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/microp/microp.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.8042763" vertical-offset="1143" max-vertical-offset="1819">
+          <caret line="96" column="29" selection-start-line="96" selection-start-column="29" selection-end-line="96" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/microp/ch8-interrupt-intro.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.4622144" vertical-offset="1624" max-vertical-offset="2193">
+          <caret line="111" column="0" selection-start-line="111" selection-start-column="0" selection-end-line="111" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5790378" vertical-offset="156" max-vertical-offset="816">
+          <caret line="29" column="20" selection-start-line="29" selection-start-column="20" selection-end-line="29" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/microp/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6274165" vertical-offset="85" max-vertical-offset="1751">
+          <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
           <folding />
         </state>
       </provider>

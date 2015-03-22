@@ -36,6 +36,9 @@ microp.config(function($routeProvider) {
         .when('/ch6', {
             templateUrl : 'ch6-polling.html'
         })
+        .when('/ch10', {
+            templateUrl : 'ch8-interrupt-intro.html'
+        })
         .otherwise({
         redirectTo: 'home.html'
     });

@@ -65,9 +65,15 @@ pre{
 img{
     width: 80%;
     height:auto;
+    padding-bottom: 20px;
+}
+.extrasmall{
+    font-weight: bold;
+    font-size: 80%;
 }
 
-sig{
+
+sig, .signal{
     padding: 2px 4px;
     font-size: 110%;
     color: #c7254e;
@@ -76,15 +82,19 @@ sig{
     box-sizing: border-box;
     font-family: Menlo,Monaco,Consolas,"Courier New",monospace;
 }
+.instruction{
+    padding: 2px 4px;
+    font-size: 100%;
+    color: #149bc7;
+    background-color: #e9f9f7;
+    border-radius: 4px;
+    border: 4px;
+    box-sizing: border-box;
+    font-family: Consolas ,monospace;
 
-.rotate90{
-    -webkit-transform: rotate(90deg);
-    position: absolute;
-    text-align: center;
 }
-.extrasmall{
-    font-weight: bold;
-    font-size: 80%;
+.left-arrow::before{
+    content: "\2190\21D0\21A4\FFE9";
 }
 
 
