@@ -1,0 +1,81 @@
+<div>
+  <h1> SIMPLE I/O DEVICE DESIGN WITH POLLING </h1>
+
+  <p>
+    <strong>Input:</strong> Data is read from an input device (keyboard, mouse, disk etc) into a CPU register by the
+    CPU.
+    In the next stage, CPU generally writes this data to a memory location.
+    In more advanced computers, input devices write their data directly to memory without CPU intermediation.
+    This is called DMA (direct memory access).
+  </p>
+
+  <p><strong>Output</strong>: Just the reverse of input</p>
+
+  <h2>How software sees I/O devices</h2>
+
+  <p>Software sees I/O devices as a group of memory locations, ie, exactly like memory.</p>
+
+  <p>We dont need any new instructions to do IO. Regular instructions to deal with memory (LD and ST) is all that is
+    needed.</p>
+
+  <h3>Memory map</h3>
+
+  <p>Memory space = 2 to the address bits</p>
+
+  <p>Difference between input, output and memory locations:</p>
+  <ul>
+    <li>Memory: Whatever CPU writes stays there untill overwritten or power out.</li>
+    <li>Input: The content of this location is determined by an input device, independently of CPU. CPU can only read
+      these locations.
+    </li>
+    <li>Output:The content of this location is written by the CPU, and this content is sent to the output device.</li>
+  </ul>
+
+
+  <strong>Example memory map:</strong>
+
+  <p>
+    The locations in the range can only be written, but may not be written.
+    If we try to write to these locations we may receive unspecified behaviour.
+    This is because these locations are not memory cells, and hence cannot be
+    used for the storage of information. They are used instead to write information
+    into the device registers. Hence, we can st, but not ld these addresses.</p>
+
+  <h2>An example unsynchronized circuit, with a program that drives it</h2>
+
+  <p>The best way to learn about IO is to inspect an example first, then design your own system.
+    Hence, without getting bogged down in theory, We will present a circuit that</p>
+  <ol>
+    <li>Read the data from a a set of 16 switches</li>
+    <li>Display it on a set of 16-leds and</li>
+    <li>Goes to step (1)</li>
+  </ol>
+
+  <p>In this way, when we change any switch, it will immediately be reflected in leds.</p>
+
+  <h3> Memory map of our circuit</h3>
+
+  <p>The software will see our switch set as a single 16 bit memory location.
+    When kth switch is closed, kth bit in this location becomes 1. If kth switch
+    is not closed, the same kth bit is zero. Similar operations</p>
+
+  <h3> A switch set as an archetypal input device</h3>
+
+  <h3> 16-led display as an archetypal output device </h3>
+
+  <h3> Address decoding logic </h3>
+
+  <h3> The complete circuit </h3>
+
+  <h3>The program that drives the circuit</h3>
+
+  <p>Note that we can write this program without designing the hardware.</p>
+
+  <h2>Synchronization problem</h2>
+
+  <p> Resolved with a flag register in the IO device. This register is also placed in memory.</p>
+
+  <h3> An example program with polling</h3>
+
+
+</div>
