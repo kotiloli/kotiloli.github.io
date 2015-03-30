@@ -93,9 +93,6 @@ sig, .signal{
     font-family: Consolas ,monospace;
 
 }
-.left-arrow::before{
-    content: "\2190\21D0\21A4\FFE9";
-}
 
 
 

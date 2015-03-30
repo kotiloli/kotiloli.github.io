@@ -82,17 +82,19 @@
       <!-- Sidebar -->
 
     <!-- Page Content-->
-    <div class="col-md-9">
+    <div class="col-md-8">
       <div ng-view></div>
     </div><!-- Page Content-->
 
   </div>
+
+  <div id="footer">
+    <div ng-include src="'../pages/footer.html'"> </div>
+  </div>
+
 </div>
 
 <!-- Footer -->
-<div id="footer">
-  <div ng-include src="'../pages/footer.html'"> </div>
-</div>
-</body>
 
+</body>
 </html>
