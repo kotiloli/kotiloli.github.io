@@ -2,45 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d7541dd7-0902-4dee-9802-ac81e94e58d3" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/simulator/cpu.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/simulator/js/assembler.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/simulator/js/controls.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/simulator/cpusimulation.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/simulator/js/drawGraphics.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/simulator/js/drawGraphicsTest.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/simulator/js/emulator.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/simulator/js/paper-full.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/simulator/simulator.html" />
-      <change type="DELETED" beforePath="C:\Users\KO\WebstormProjects\baranweb\microp\textbook\ADD_SUB_etc_instructions.bmp" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\KO\WebstormProjects\baranweb\microp\textbook\ADD_SUB_etc_instructions.odg" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\KO\WebstormProjects\baranweb\microp\textbook\CALL_RET_instructions.bmp" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\KO\WebstormProjects\baranweb\microp\textbook\CALL_RET_instructions.odg" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\KO\WebstormProjects\baranweb\microp\textbook\INC_DEC_instructions.bmp" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\KO\WebstormProjects\baranweb\microp\textbook\INC_DEC_instructions.odg" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\KO\WebstormProjects\baranweb\microp\textbook\JMP_JZ_instructions.bmp" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\KO\WebstormProjects\baranweb\microp\textbook\JMP_JZ_instructions.odg" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\KO\WebstormProjects\baranweb\microp\textbook\LDI_instruction.bmp" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\KO\WebstormProjects\baranweb\microp\textbook\LDI_instruction.odg" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\KO\WebstormProjects\baranweb\microp\textbook\LD_ST_instructions.bmp" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\KO\WebstormProjects\baranweb\microp\textbook\LD_ST_instructions.odg" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\KO\WebstormProjects\baranweb\microp\textbook\MOV_NOT_instructions.bmp" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\KO\WebstormProjects\baranweb\microp\textbook\MOV_NOT_instructions.odg" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\KO\WebstormProjects\baranweb\microp\textbook\PUSH_POP_instructions.bmp" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\KO\WebstormProjects\baranweb\microp\textbook\PUSH_POP_instructions.odg" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\KO\WebstormProjects\baranweb\microp\textbook\basic principles of input and output.html" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\KO\WebstormProjects\baranweb\microp\textbook\ch1-instruction set.html" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\KO\WebstormProjects\baranweb\microp\textbook\ch2-assembler.html" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\KO\WebstormProjects\baranweb\microp\textbook\ch2.5-Basic HW.html" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\KO\WebstormProjects\baranweb\microp\textbook\ch3.html" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\KO\WebstormProjects\baranweb\microp\textbook\ch4-push pop call ret.html" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\KO\WebstormProjects\baranweb\microp\textbook\ch5.5-address decoding.html" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\KO\WebstormProjects\baranweb\microp\textbook\ch6-io and polling.html" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\KO\WebstormProjects\baranweb\microp\textbook\ch8-introduction to interrupts.html" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\KO\WebstormProjects\baranweb\microp\textbook\index.html" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\KO\WebstormProjects\baranweb\microp\textbook\my processor in traditional verilog.v" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\KO\WebstormProjects\baranweb\microp\textbook\projects" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\KO\WebstormProjects\baranweb\microp\textbook\verilog code" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/microp/index.html" afterPath="$PROJECT_DIR$/microp/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="baranweb.iws" />
@@ -510,13 +471,20 @@
       <option name="project" value="LOCAL" />
       <updated>1427730276733</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="All pages added &#10;&#10;">
+      <created>1428009912547</created>
+      <option name="number" value="00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1428009912547</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1366" height="728" extended-state="0" />
     <editor active="false" />
     <layout>
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32861635" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32861635" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -532,7 +500,6 @@
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32861635" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32861635" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
