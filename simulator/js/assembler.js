@@ -5,15 +5,18 @@ var regexScope = /^\s*(\.code|\.data)\s*$/i;
 //variable decleration regex
 var regexVariable = /^\s*[_A-Za-z]\w*\s*:\s*(.space\s+)?(\d+|0x[0-9a-fA-F]+)\s*$/i;
 
+var regexVariableDec = /^\s*([_A-Za-z]\w*)\s*:\s*(\d+|0x[0-9a-fA-F]+)\s*$/i;
+var regexArrayDec = /^\s*([_A-Za-z]\w*)\s*:\s*(?:.space\s+)(\d+)\s*$/i;
+
 var regexLabel = /^\s*([_A-Za-z]\w*\s+)?/i;
 
 /**
     General Instractions Format
-    <label> + [instruction] + [,operands]
-    Note that <label> is optional
+    [?label] + [instruction mnemonic] + [,operands]
+    Note that [label] is optional
 */
 
-//ALU instructions ADD,SUB,AND,OR,XOR  -->  <label> + [instruction] + [r1] + [r2] + [r3]
+//ALU instructions ADD,SUB,AND,OR,XOR  -->  [?label] + [instruction mnemonic] + [r1] + [r2] + [r3]
 var instructionType0 = /^\s*(?:[_A-Za-z]\w*\s+)?(add|sub|and|or|xor)\s+([0-3])\s+([0-3])\s+([0-3])\s*$/i;
 //MOV, NOT, LD, ST
 var instructionType1 = /^\s*(?:[_A-Za-z]\w*\s+)?(mov|not|ld|st)\s+([0-3])\s+([0-3])\s*$/i;
@@ -24,7 +27,7 @@ var instructionType3 = /^\s*(?:[_A-Za-z]\w*\s+)?(ldi)\s+([0-3])\s+([_A-Za-z]\w*|
 //JMP, JZ
 var instructionType4 = /^\s*(?:[_A-Za-z]\w*\s+)?(jz|jmp)\s+([_A-Za-z]\w*)\s*$/i;
 
-function validityCheck(str){
+function isValidCode(str){
     return regexVariable.test(str) |
         regexScope.test(str) |
         instructionType0.test((str)) |
@@ -33,8 +36,15 @@ function validityCheck(str){
         instructionType3.test((str)) |
         instructionType4.test((str)) ;
 }
+function isValidInstruction(str){
+    return instructionType0.test((str)) |
+        instructionType1.test((str)) |
+        instructionType2.test((str)) |
+        instructionType3.test((str)) |
+        instructionType4.test((str)) ;
+}
 
-function getInstArray(str){
+function splitInstruction(str){
     if(instructionType0.test(str))
         return instructionType0.exec(str);
     else if(instructionType1.test(str))
@@ -117,28 +127,53 @@ function binary(num){
 }
 
 function zeroPreceding(str, size) {
-    var s = "000000000" + str;
+    var s = "00000000000000000000" + str;
     return s.substr(s.length-size);
 };
 
 
 function assembler(inputText){
-    var codeArr = inputText.split("\n");
-    var assembled = "";
-    var regexArr = [];
-    var inst = "";
+    var codeLines = inputText.split("\n");
+    var codeArr = [];
+    var instParts = [];
     var instArr = [];
+    var lineCounter = 0;
+    var labelArr = [];
+
+    //Remove Blank Lines
+    for(i in codeLines){
+        //if  it's not a blank line add to code Array
+        if(!(/^\s*$/.test(codeLines[i]))){
+            codeArr.push(codeLines[i]);
+        }
+    }
+    //first PASS calculate total lines of code, label & var addresses, ...
     for(i in codeArr){
-        inst = codeArr[i];
+        if(regexVariableDec.test(codeArr[i])){
+            var parts = regexVariable.exec(codeArr[i]);
+            labelArr.push(labelObject('variable',parts[1],parts[2],1,0));
+        }
+        else if(regexArrayDec.test(codeArr[i])){
+            var parts = regexArrayDec.exec(codeArr[i]);
+            labelArr.push(labelObject('variable',parts[1],0,parts[2],0));
+        }
+        else if(isValidInstruction(codeArr[i])){
+
+        }
+
+    }
+
+    //second PASS
+    for(i in codeArr){
+        var inst = codeArr[i];
         if(regexVariable.test(inst) | regexScope.test(inst)){
-            assembled += '----------\n';
             continue;
         }
 
-        if(validityCheck(inst)){
-            regexArr = getInstArray(inst);
-            assembled += instFormat(regexArr) + '\n'; // + '\tvalid\n';
-            instArr.push(instFormat(regexArr));
+        if(isValidCode(inst)){
+            instParts = splitInstruction(inst);
+            assembled += instFormat(instParts) + '\n';
+            instArr.push(instFormat(instParts));
         }
         else
             assembled += '\t\tNOT valid\n';
@@ -146,6 +181,15 @@ function assembler(inputText){
     return instArr;
 };
 
+var labelObject = function(type,name,value,size,addr){
+    return {
+        type: + type,
+        name: + name,
+        value: + value,
+        size: + size,
+        addr:+addr
+    }
+};
 
 
 
