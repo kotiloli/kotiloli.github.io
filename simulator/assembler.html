@@ -26,7 +26,14 @@
     function assembleCode() {
       var input = $("#sourceCode").val();
       var hexcodeArr = assembler(input);
-      $("#hexCode").val(hexcodeArr.join('\n'));
+      var debugStr = hexcodeArr.join('\n');
+      var hexDebugStr = '';
+      for(i in hexcodeArr){
+        console.log(typeof(i) );
+        hexDebugStr += (('0000'+ (parseInt(i).toString(16))).substr(-4) + '  ' +('0000'+(parseInt(hexcodeArr[i],2).toString(16))).substr(-4) + '   ' + hexcodeArr[i]  +'\n');
+        hexDebugStr = hexDebugStr.toUpperCase();
+      }
+      $("#hexCode").val(hexDebugStr);
     }
   </script>
 </head>

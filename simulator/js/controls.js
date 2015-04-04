@@ -10,6 +10,9 @@ $(document).ready(function(){
     $("#step").click(nextStep);
     $("#assemble").click(assembleCode);
     $("#rom").val(emulator.rom.join('\n'));
+   /* $("#sourceCode").on('change keyup paste', function() {
+        assembleCode();
+    });*/
     window.setInterval(run,800);
 });
 
