@@ -24,10 +24,6 @@ function run(){
     window.globals.regs.IR = '0x' + randomString(4,'0123456789ABCDEF');
 
 };
-$(document).ready(function() {
-    window.setInterval(run,800);
-});
-
 
 var randomInt = function(top){
     var num =  Math.floor((Math.random() * 1000) + 1) % top;

@@ -10,17 +10,17 @@ $(document).ready(function(){
     $("#step").click(nextStep);
     $("#assemble").click(assembleCode);
     $("#rom").val(emulator.rom.join('\n'));
-
+    window.setInterval(run,800);
 });
 
 
 
 function assembleCode() {
     var input = $("#sourceCode").val();
-    var instArr = assembler(input);
-    $("#hexCode").val(instArr.join('\n'));
-    for(var i=0;i<instArr.length;i++){
-        emulator.ram[i] = instArr[i];
+    var hexcodeArr = assembler(input);
+    $("#hexCode").val(hexcodeArr.join('\n'));
+    for(var i=0;i<hexcodeArr.length;i++){
+        emulator.ram[i] = hexcodeArr[i];
     }
     debug();
 }

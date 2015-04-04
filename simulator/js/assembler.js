@@ -2,13 +2,13 @@
 // .code | .data reges
 var regexScope = /^\s*(\.code|\.data)\s*$/i;
 
-//variable decleration regex
-var regexVariable = /^\s*[_A-Za-z]\w*\s*:\s*(.space\s+)?(\d+|0x[0-9a-fA-F]+)\s*$/i;
+//data decleration regex
+var regexDataDec = /^\s*[_A-Za-z]\w*\s*:\s*(.space\s+)?(\d+|0x[0-9a-fA-F]+)\s*$/i;
+
 
 var regexVariableDec = /^\s*([_A-Za-z]\w*)\s*:\s*(\d+|0x[0-9a-fA-F]+)\s*$/i;
 var regexArrayDec = /^\s*([_A-Za-z]\w*)\s*:\s*(?:.space\s+)(\d+)\s*$/i;
 
-var regexLabel = /^\s*([_A-Za-z]\w*\s+)?/i;
 
 /**
     General Instractions Format
@@ -26,9 +26,10 @@ var instructionType2 = /^\s*(?:[_A-Za-z]\w*\s+)?(inc|dec)\s+([0-3])\s*$/i;
 var instructionType3 = /^\s*(?:[_A-Za-z]\w*\s+)?(ldi)\s+([0-3])\s+([_A-Za-z]\w*|\d+|0x[0-9a-fA-F]+)\s*$/i;
 //JMP, JZ
 var instructionType4 = /^\s*(?:[_A-Za-z]\w*\s+)?(jz|jmp)\s+([_A-Za-z]\w*)\s*$/i;
+var regexInstWithLabel = /^\s*([_A-Za-z]\w*\s+)([_A-Za-z]\w*)\w*/i;
 
 function isValidCode(str){
-    return regexVariable.test(str) |
+    return regexDataDec.test(str) |
         regexScope.test(str) |
         instructionType0.test((str)) |
         instructionType1.test((str)) |
@@ -43,6 +44,31 @@ function isValidInstruction(str){
         instructionType3.test((str)) |
         instructionType4.test((str)) ;
 }
+
+function isInstKeyword(keyword){
+    keyword = keyword.toLowerCase();
+    return keyword === 'add' |
+        keyword === 'sub' |
+        keyword === 'and' |
+        keyword === 'or' |
+        keyword === 'xor' |
+        keyword === 'ldi' |
+        keyword === 'not' |
+        keyword === 'mov' |
+        keyword === 'inc' |
+        keyword === 'dec' |
+        keyword === 'ld' |
+        keyword === 'st' |
+        keyword === 'jmp' |
+        keyword === 'jz';
+};
+function isReservedKeyword(keyword){
+    keyword = keyword.toLowerCase();
+    return keyword === '.data' |
+        keyword === '.space' |
+        keyword === '.code' |
+        isInstKeyword(keyword);
+};
 
 function splitInstruction(str){
     if(instructionType0.test(str))
@@ -96,11 +122,14 @@ function instFormat(instArr){
     }
     //LDI r1 labelname
     else if(instArr[1].toLowerCase() == 'ldi'){
-        return  '0001' + '0000000000' + binary(instArr[2]) + '\n' + '????????????????';
+        var output = [];
+        output.push('0001' + '0000000000' + binary(instArr[2]));
+        output.push('----------------');
+        return  output;
     }
     //LD r1 r2
     else if(instArr[1].toLowerCase() == 'ld'){
-        return  '0010' + '0000000' + binary(instArr[3]) + '0' + binary(instArr[2]);
+        return [ '0010' + '0000000' + binary(instArr[3]) + '0' + binary(instArr[2])];
     }
     //ST r1 r2
     else if(instArr[1].toLowerCase() == 'st') {
@@ -139,6 +168,7 @@ function assembler(inputText){
     var instArr = [];
     var lineCounter = 0;
     var labelArr = [];
+    var variableArr = [];
 
     //Remove Blank Lines
     for(i in codeLines){
@@ -150,45 +180,85 @@ function assembler(inputText){
     //first PASS calculate total lines of code, label & var addresses, ...
     for(i in codeArr){
         if(regexVariableDec.test(codeArr[i])){
-            var parts = regexVariable.exec(codeArr[i]);
-            labelArr.push(labelObject('variable',parts[1],parts[2],1,0));
+            var parts = regexVariableDec.exec(codeArr[i]);
+            variableArr.push(variableObject(parts[1],parts[2],1,undefined));
         }
         else if(regexArrayDec.test(codeArr[i])){
             var parts = regexArrayDec.exec(codeArr[i]);
-            labelArr.push(labelObject('variable',parts[1],0,parts[2],0));
+            variableArr.push(variableObject(parts[1],0,parts[2],undefined));
         }
+        //Get Label information
         else if(isValidInstruction(codeArr[i])){
-
+            var parts = regexInstWithLabel.exec(codeArr[i]);
+            if(parts != null){
+                console.log(parts);
+                if( !isReservedKeyword(parts[1]) && isInstKeyword(parts[2])){
+                    labelArr.push(labelObject(parts[1],lineCounter));
+                }
+                else {
+                    labelArr.push(labelObject('WRONG_LABEL_NAME',0));
+                }
+            }
+            lineCounter += (instructionType3.test((codeArr[i]))) ? 2 : 1;
+        }else if(isValidCode(codeArr[i])){
+            //console.log('not counted: ' + codeArr[i]);
         }
-
+        else ;//console.log('not valid: ' + codeArr[i]);
     }
 
     //second PASS
+    lineCounter = 0;
     for(i in codeArr){
         var inst = codeArr[i];
-        if(regexVariable.test(inst) | regexScope.test(inst)){
+        if(regexDataDec.test(inst) | regexScope.test(inst)){
             continue;
         }
 
-        if(isValidCode(inst)){
+        if(isValidInstruction(inst)){
             instParts = splitInstruction(inst);
-            assembled += instFormat(instParts) + '\n';
-            instArr.push(instFormat(instParts));
+            instArr = instArr.concat(instFormat(instParts));
+
+        }else{
+            instArr.push('????????????????');
         }
-        else
-            assembled += '\t\tNOT valid\n';
     }
+    console.log(labelArr);
+    console.log(variableArr);
     return instArr;
 };
 
-var labelObject = function(type,name,value,size,addr){
+var labelObject = function(name,lineNum){
     return {
-        type: + type,
-        name: + name,
-        value: + value,
-        size: + size,
-        addr:+addr
+        name: name.toLowerCase(), //label name
+        lineNum:lineNum            //label line address
     }
+};
+
+var variableObject = function(name,value,size,addr){
+    if(value.substr(0,2) === '0x' || value.substr(0,2) === '0X'){
+        value = parseInt(value,16);
+    }
+    return {
+        name:  name.toLowerCase(), //variable name
+        value:  value,             //can be variable value
+        size:  size,               //can be [0,*] for  array, only 1 for simple variables
+        addr: addr                  //memory  addres of array or variable,
+    }
+};
+
+function getNode(nodeArr,name){
+    for(i in nodeArr){
+        if(nodeArr[i].name === name.toLowerCase)
+            return nodeArr[i];
+    }
+    return null;
+};
+function isNodeExist(nodeArr,name){
+    for(i in nodeArr){
+        if(nodeArr[i].name === name.toLowerCase)
+            return true;
+    }
+    return false;
 };
 
 
