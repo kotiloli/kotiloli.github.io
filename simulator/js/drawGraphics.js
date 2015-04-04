@@ -23,7 +23,8 @@ window.globals = {
     },
     selectedReg:NaN,
     wireZF:0,
-    wireClock:0
+    wireClock:0,
+    elem : $("#hexCode")
 };
 
 var GREEN = '#336600';
@@ -72,7 +73,7 @@ IR.fontSize = '14px';
 IR.content = '0x0000';
 IR.set({position:InstructionRegister.boxList[0].position});
 
-//Control unit wires drawings
+/*//Control unit wires drawings
 var sigARMUX = new Path();
 sigARMUX.add(new Point (171,126));
 sigARMUX.add(new Point (253,126));
@@ -159,7 +160,7 @@ wireZF.add(new Point (553,395));
 wireZF.add(new Point (553,506));
 wireZF.add(new Point (402,506));
 wireZF.strokeColor = 'black';
-wireZF.strokeWidth = 4;
+wireZF.strokeWidth = 4;*/
 
 
 
@@ -219,3 +220,15 @@ function boxList(ix,iy,w,h,hg){
         }
     }
 };
+
+var myPath = new Path();
+myPath.strokeColor = 'green';
+myPath.strokeWidth = 4;
+
+function onMouseDown(event) {
+    myPath.add(event.point);
+    console.log(event.point);
+    var str = window.globals.elem.val();
+    str += '\n' + 'sig.add(new Point (' + event.point.x + ',' + event.point.x + '));';
+    window.globals.elem.val(str);
+}

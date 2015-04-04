@@ -13,7 +13,7 @@ $(document).ready(function(){
    /* $("#sourceCode").on('change keyup paste', function() {
         assembleCode();
     });*/
-    window.setInterval(run,800);
+    //window.setInterval(run,800);
 });
 
 
