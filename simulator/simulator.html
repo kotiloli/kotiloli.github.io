@@ -14,7 +14,7 @@
   <script src="js/assembler.js"></script>
   <script type="text/javascript" src="js/emulator.js"></script>
   <script type="text/paperscript" src="js/drawGraphics.js" canvas="myCanvas" keepalive="true" resize></script>
-  <script type="text/javascript" src="js/drawGraphicsTest.js"></script>
+  <!--<script type="text/javascript" src="js/drawGraphicsTest.js"></script>-->
   <script type="text/javascript" src="js/controls.js"></script>
 
 </head>
@@ -67,7 +67,7 @@
             <h4 class="panel-title">Memory (ROM)</h4>
           </div>
           <div class="panel-body">
-            <textarea id="rom" class="form-control source-code" rows="5" spellcheck="false" wrap="off"></textarea>
+            <textarea id="rom" class="form-control source-code" rows="4" spellcheck="false" wrap="off"></textarea>
           </div>
         </div>
       </div>
@@ -90,10 +90,10 @@
       <div class="panel panel-default">
         <div class="panel-heading">
           <div class="btn-group controlButtons">
-            <button type="button" class="btn btn-success"><span class="glyphicon glyphicon-play"></span> Run</button>
-            <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-stop"></span> Stop</button>
-            <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-forward"></span> Step</button>
-            <button type="button" class="btn btn-warning"><span class="glyphicon glyphicon-repeat"></span> Reset</button>
+            <button id="run" type="button" class="btn btn-success"><span class="glyphicon glyphicon-play"></span> Run</button>
+            <button id="stop" type="button" class="btn btn-default"><span class="glyphicon glyphicon-stop"></span> Stop</button>
+            <button id="step" type="button" class="btn btn-default"><span class="glyphicon glyphicon-forward"></span> Step</button>
+            <button id="reset" type="button" class="btn btn-warning"><span class="glyphicon glyphicon-repeat"></span> Reset</button>
           </div>
 
         </div>

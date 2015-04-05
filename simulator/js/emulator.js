@@ -10,7 +10,7 @@ var signalIndex = {
     NOTDEFINED1:11,NOTDEFINED2:10,NOTDEFINED3:9,INTACK:8,
     PCWTDIRECT:7
 };
-var emulator = function(){
+var Emulator = function(){
 
     this.ram = [];
     this.rom = [];
@@ -213,7 +213,7 @@ var emulator = function(){
 
 };
 
-emulator.prototype.getControlSignals = function(opcode,zflag){
+Emulator.prototype.getControlSignals = function(opcode,zflag){
     //console.log('this.romAddr: ' + this.romAddr);
     var sigs =  this.rom[this.romAddr];
     console.log('SIGNAL : ' +  sigs);

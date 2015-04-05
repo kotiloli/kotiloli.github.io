@@ -9,8 +9,10 @@ function run(){
     window.globals.signal.PCLD = randomInt(2);
     window.globals.signal.REGWT = randomInt(2);
     window.globals.signal.MEMWT = randomInt(2);
-    window.globals.signal.IRWT = randomInt(2);
+    window.globals.signal.IRLD = randomInt(2);
     window.globals.signal.FLAGWT = randomInt(2);
+    window.globals.signal.MUX0 = randomInt(2);
+    window.globals.signal.MUX1 = randomInt(2);
 
     window.globals.selectedReg = randomInt(4);
     window.globals.wireZF = randomInt(2);
