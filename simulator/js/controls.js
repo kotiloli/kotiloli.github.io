@@ -12,7 +12,7 @@ window.globals = {
         REGWT:0,
         MEMWT:0,
         IRLD:0,
-        FLAGWT:0,
+        ZFWT:0,
         MUX0:0,
         MUX1:0
     },
@@ -45,9 +45,12 @@ $(document).ready(function(){
     $("#reset").click(resetSimulation);
     $("#assemble").click(assembleCode);
     $("#rom").val(emulator.rom.join('\n'));
-   /* $("#sourceCode").on('change keyup paste', function() {
-        assembleCode();
-    });*/
+    $('#sourceCode').val(readCookie('sourceCode'));
+
+   $("#sourceCode").on('change keyup paste', function() {
+       //eraseCookie('sourceCode');
+        createCookie('sourceCode',$('#sourceCode').val(),365);
+    });
     //window.setInterval(run,800);
 });
 
@@ -141,7 +144,7 @@ function makeCanvasUpdates(){
     window.globals.signal.REGWT  = isSet(emulator.sigs, 'REGWT') ?  1:0;
     window.globals.signal.MEMWT  = isSet(emulator.sigs, 'MEMWT') ?  1:0;
     window.globals.signal.IRLD   = isSet(emulator.sigs, 'IRLD') ?  1:0;
-    window.globals.signal.FLAGWT = isSet(emulator.sigs, 'FLAGWT') ?  1:0;
+    window.globals.signal.ZFWT = isSet(emulator.sigs, 'ZFWT') ?  1:0;
     window.globals.signal.MUX0   = isSet(emulator.sigs, 'MUX0') ?  1:0;
     window.globals.signal.MUX1   = isSet(emulator.sigs, 'MUX1') ?  1:0;
 
@@ -157,3 +160,31 @@ function makeCanvasUpdates(){
     window.globals.regs.IR = '0x' + parseInt(emulator.IR,2).toString(16);
 
 };
+function createCookie(name,value,days) {
+    if (days) {
+        var date = new Date();
+        date.setTime(date.getTime()+(days*24*60*60*1000));
+        var expires = "; expires="+date.toGMTString();
+    }
+    else var expires = "";
+    value = value.replace(/\n/g,'linefeedplaceholder7352437546356236');
+    document.cookie = name+"="+value+expires+"; path=/";
+}
+
+function readCookie(name) {
+    var nameEQ = name + "=";
+    var ca = document.cookie.split(';');
+    for(var i=0;i < ca.length;i++) {
+        var c = ca[i];
+        while (c.charAt(0)==' ') c = c.substring(1,c.length);
+        if (c.indexOf(nameEQ) == 0) {
+            var value = c.substring(nameEQ.length,c.length);
+            return value.replace(/linefeedplaceholder7352437546356236/g,'\n');
+        }
+    }
+    return null;
+}
+
+function eraseCookie(name) {
+    createCookie(name,"",-1);
+}

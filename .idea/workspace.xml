@@ -4,9 +4,7 @@
     <list default="true" id="d7541dd7-0902-4dee-9802-ac81e94e58d3" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/simulator/js/controls.js" afterPath="$PROJECT_DIR$/simulator/js/controls.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/simulator/js/drawGraphics.js" afterPath="$PROJECT_DIR$/simulator/js/drawGraphics.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/simulator/js/drawGraphicsTest.js" afterPath="$PROJECT_DIR$/simulator/js/drawGraphicsTest.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/simulator/js/emulator.js" afterPath="$PROJECT_DIR$/simulator/js/emulator.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/simulator/simulator.html" afterPath="$PROJECT_DIR$/simulator/simulator.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="baranweb.iws" />
@@ -34,7 +32,7 @@
       <file leaf-file-name="simulator.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/simulator/simulator.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-7.490909" vertical-offset="999" max-vertical-offset="2040">
+            <state vertical-scroll-proportion="0.0" vertical-offset="999" max-vertical-offset="2040">
               <caret line="83" column="10" selection-start-line="83" selection-start-column="10" selection-end-line="83" selection-end-column="10" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -43,11 +41,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="controls.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="controls.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/simulator/js/controls.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="2.204263" vertical-offset="0" max-vertical-offset="2771">
-              <caret line="75" column="32" selection-start-line="75" selection-start-column="32" selection-end-line="75" selection-end-column="32" />
+            <state vertical-scroll-proportion="-12.068966" vertical-offset="653" max-vertical-offset="3281">
+              <caret line="61" column="41" selection-start-line="61" selection-start-column="41" selection-end-line="61" selection-end-column="41" />
               <folding>
                 <element signature="e#0#39#0" expanded="false" />
               </folding>
@@ -58,8 +56,8 @@
       <file leaf-file-name="assembler.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/simulator/js/assembler.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="4306" max-vertical-offset="5508">
-              <caret line="266" column="30" selection-start-line="266" selection-start-column="29" selection-end-line="266" selection-end-column="30" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="5508">
+              <caret line="56" column="27" selection-start-line="56" selection-start-column="27" selection-end-line="56" selection-end-column="27" />
               <folding />
             </state>
           </provider>
@@ -68,8 +66,8 @@
       <file leaf-file-name="drawGraphics.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/simulator/js/drawGraphics.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-3.8275862" vertical-offset="1716" max-vertical-offset="6732">
-              <caret line="114" column="28" selection-start-line="114" selection-start-column="28" selection-end-line="114" selection-end-column="28" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="4742" max-vertical-offset="6902">
+              <caret line="327" column="31" selection-start-line="327" selection-start-column="31" selection-end-line="327" selection-end-column="31" />
               <folding />
             </state>
           </provider>
@@ -78,7 +76,7 @@
       <file leaf-file-name="drawGraphicsTest.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/simulator/js/drawGraphicsTest.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-9.965517" vertical-offset="0" max-vertical-offset="816">
+            <state vertical-scroll-proportion="0.0" vertical-offset="289" max-vertical-offset="816">
               <caret line="17" column="41" selection-start-line="17" selection-start-column="41" selection-end-line="17" selection-end-column="41" />
               <folding />
             </state>
@@ -95,11 +93,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="emulator.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="emulator.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/simulator/js/emulator.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="3337" max-vertical-offset="4828">
-              <caret line="211" column="6" selection-start-line="211" selection-start-column="6" selection-end-line="211" selection-end-column="6" />
+            <state vertical-scroll-proportion="0.910473" vertical-offset="3184" max-vertical-offset="4964">
+              <caret line="219" column="31" selection-start-line="219" selection-start-column="31" selection-end-line="219" selection-end-column="31" />
               <folding />
             </state>
           </provider>
@@ -166,10 +164,10 @@
         <option value="$PROJECT_DIR$/simulator/assembler.html" />
         <option value="$PROJECT_DIR$/simulator/cpusimulation.css" />
         <option value="$PROJECT_DIR$/simulator/simulator.html" />
-        <option value="$PROJECT_DIR$/simulator/js/emulator.js" />
-        <option value="$PROJECT_DIR$/simulator/js/drawGraphics.js" />
         <option value="$PROJECT_DIR$/simulator/js/drawGraphicsTest.js" />
         <option value="$PROJECT_DIR$/simulator/js/controls.js" />
+        <option value="$PROJECT_DIR$/simulator/js/drawGraphics.js" />
+        <option value="$PROJECT_DIR$/simulator/js/emulator.js" />
       </list>
     </option>
   </component>
@@ -317,10 +315,14 @@
       <ConfigurationWrapper RunnerId="JavascriptDebugRunner" />
       <method />
     </configuration>
+    <configuration default="true" type="DartCommandLineRunConfigurationType" factoryName="Dart Command Line Application">
+      <method />
+    </configuration>
     <configuration default="true" type="DartUnitRunConfigurationType" factoryName="DartUnit">
       <method />
     </configuration>
-    <configuration default="true" type="DartCommandLineRunConfigurationType" factoryName="Dart Command Line Application">
+    <configuration default="true" type="JavaScriptTestRunnerKarma" factoryName="Karma" config-file="">
+      <envs />
       <method />
     </configuration>
     <configuration default="true" type="JSTestDriver:ConfigurationType" factoryName="JsTestDriver">
@@ -328,10 +330,6 @@
       <setting name="settingsFile" value="" />
       <setting name="serverType" value="INTERNAL" />
       <setting name="preferredDebugBrowser" value="Chrome" />
-      <method />
-    </configuration>
-    <configuration default="true" type="JavaScriptTestRunnerKarma" factoryName="Karma" config-file="">
-      <envs />
       <method />
     </configuration>
     <configuration default="true" type="ChromiumRemoteDebugType" factoryName="Chromium Remote">
@@ -500,7 +498,13 @@
       <option name="project" value="LOCAL" />
       <updated>1428255408336</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="All pages added &#10;&#10;canvas wire, signal paintings done">
+      <created>1428270316161</created>
+      <option name="number" value="00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1428270316161</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -520,12 +524,12 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32861635" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32861635" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -888,7 +892,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/simulator/simulator.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.490909" vertical-offset="999" max-vertical-offset="2040">
+        <state vertical-scroll-proportion="0.0" vertical-offset="999" max-vertical-offset="2040">
           <caret line="83" column="10" selection-start-line="83" selection-start-column="10" selection-end-line="83" selection-end-column="10" />
           <folding>
             <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -896,45 +900,45 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/simulator/js/assembler.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="4306" max-vertical-offset="5508">
-          <caret line="266" column="30" selection-start-line="266" selection-start-column="29" selection-end-line="266" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/simulator/js/drawGraphics.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.8275862" vertical-offset="1716" max-vertical-offset="6732">
-          <caret line="114" column="28" selection-start-line="114" selection-start-column="28" selection-end-line="114" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/simulator/js/drawGraphicsTest.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-9.965517" vertical-offset="0" max-vertical-offset="816">
+        <state vertical-scroll-proportion="0.0" vertical-offset="289" max-vertical-offset="816">
           <caret line="17" column="41" selection-start-line="17" selection-start-column="41" selection-end-line="17" selection-end-column="41" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/simulator/js/emulator.js">
+    <entry file="file://$PROJECT_DIR$/simulator/js/assembler.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="3337" max-vertical-offset="4828">
-          <caret line="211" column="6" selection-start-line="211" selection-start-column="6" selection-end-line="211" selection-end-column="6" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="5508">
+          <caret line="56" column="27" selection-start-line="56" selection-start-column="27" selection-end-line="56" selection-end-column="27" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/simulator/js/controls.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="2.204263" vertical-offset="0" max-vertical-offset="2771">
-          <caret line="75" column="32" selection-start-line="75" selection-start-column="32" selection-end-line="75" selection-end-column="32" />
+        <state vertical-scroll-proportion="-12.068966" vertical-offset="653" max-vertical-offset="3281">
+          <caret line="61" column="41" selection-start-line="61" selection-start-column="41" selection-end-line="61" selection-end-column="41" />
           <folding>
             <element signature="e#0#39#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/simulator/js/drawGraphics.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="4742" max-vertical-offset="6902">
+          <caret line="327" column="31" selection-start-line="327" selection-start-column="31" selection-end-line="327" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/simulator/js/emulator.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.910473" vertical-offset="3184" max-vertical-offset="4964">
+          <caret line="219" column="31" selection-start-line="219" selection-start-column="31" selection-end-line="219" selection-end-column="31" />
+          <folding />
         </state>
       </provider>
     </entry>

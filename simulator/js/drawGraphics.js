@@ -316,8 +316,18 @@ wireMUX3OUT.add(new Point (386,25));
 wireMUX3OUT.strokeColor = BLACK;
 wireMUX3OUT.strokeWidth = 4;
 
-
+var xxx = new Path();
+xxx.add(new Point(60,30));
+xxx.add(new Point(65,35));
+xxx.strokeColor = BLACK;
+xxx.strokeWidth = 1;
 onFrame = function (event) {
+    /*Paper JS refreshes the paintings  60 times per second. Reduce refresh ratio not to waste your device recources   */
+    var frequency = 4;// refresh 4 times in a second
+    var mod = 60/frequency;
+    if(event.count %mod == 0 ){
+        xxx.rotate(45);
+
     //Signals
     sigARMUX.strokeColor = window.globals.signal.ARMUX == 0 ? GREEN : LIGHTGREEN;
     sigARLD.strokeColor = window.globals.signal.ARLD == 0 ? GREEN : LIGHTGREEN;
@@ -327,7 +337,7 @@ onFrame = function (event) {
     sigREGWT.strokeColor = window.globals.signal.REGWT == 0 ? GREEN : LIGHTGREEN;
     sigMEMWT.strokeColor = window.globals.signal.MEMWT == 0 ? GREEN : LIGHTGREEN;
     sigIRLD.strokeColor = window.globals.signal.IRLD == 0 ? GREEN : LIGHTGREEN;
-    sigFLAGWT.strokeColor = window.globals.signal.FLAGWT == 0 ? GREEN : LIGHTGREEN;
+    sigFLAGWT.strokeColor = window.globals.signal.ZFWT == 0 ? GREEN : LIGHTGREEN;
     sigMUX0.strokeColor = window.globals.signal.MUX0 == 0 ? GREEN : LIGHTGREEN;
     sigMUX1.strokeColor = window.globals.signal.MUX1 == 0 ? GREEN : LIGHTGREEN;
 
@@ -341,7 +351,7 @@ onFrame = function (event) {
     PC.set({content:window.globals.regs.PC});
     IR.set({content:window.globals.regs.IR});
     //FLAGS.set({content:window.globals.regs.FLAGS});
-
+    }
 };
 
 function boxList(ix,iy,w,h,hg){

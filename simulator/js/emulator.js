@@ -2,11 +2,11 @@
 
 var zeros = '0000000000000000';
 var signalIndex = {
-    IRLD:31,PCLD:30,PCINC:29,ARLD:28,
-    ARINC:27,ARDEC:26,INTMUX:25,ARMUX:24,
-    SPINC:23,SPDEC:22,SPLD:21,MUX2:20,
-    MUX1:19,MUX0:18,REGWT:17,MEMWT:16,
-    FLAGWT:15,ZFWT:14,IFSET:13,IFRESET:12,
+    IRLD:31, PCLD:30,  PCINC:29,   ARLD:28,
+    ARINC:27,ARDEC:26, INTMUX:25,  ARMUX:24,
+    SPINC:23,SPDEC:22, SPLD:21,    MUX2:20,
+    MUX1:19, MUX0:18,  REGWT:17,   MEMWT:16,
+    FLAGWT:15,ZFWT:14, IFSET:13,   IFRESET:12,
     NOTDEFINED1:11,NOTDEFINED2:10,NOTDEFINED3:9,INTACK:8,
     PCWTDIRECT:7
 };
@@ -25,40 +25,40 @@ var Emulator = function(){
     this.clockFrequency = 1; // in HERTZ
 
     this.initialize = function(){
-        this.IR = '0111000000000000';
+        //this.IR = this.ram[0];
         this.regfile.push(zeros);
         this.regfile.push(zeros);
         this.regfile.push(zeros);
         this.regfile.push(zeros);
-        this.rom.push('10101000000000000000000000000000');
+        this.rom.push('10101000000000000000000000000000');//FETCH
         this.rom.push('00000000000000000000000000000000');
         this.rom.push('00000000000000000000000000000000');
         this.rom.push('00000000000000000000000000000000');
-        this.rom.push('00101000000000100000000000000000');
+        this.rom.push('00101000000000100000000000000000');//LDI
         this.rom.push('00000000000000000000000000000000');
         this.rom.push('00000000000000000000000000000000');
         this.rom.push('00000000000000000000000000000000');
-        this.rom.push('00010000000011000000000000001001');
+        this.rom.push('00010000000011000000000000001001');//LD
         this.rom.push('00010001000000100000000000000000');
         this.rom.push('00000000000000000000000000000000');
         this.rom.push('00000000000000000000000000000000');
-        this.rom.push('00010000000011000000000000001101');
+        this.rom.push('00010000000011000000000000001101');//ST
         this.rom.push('00010001000010010000000000000000');
         this.rom.push('00000000000000000000000000000000');
         this.rom.push('00000000000000000000000000000000');
+        this.rom.push('00000000000000000000000000000000');//JZ
         this.rom.push('00000000000000000000000000000000');
         this.rom.push('00000000000000000000000000000000');
         this.rom.push('00000000000000000000000000000000');
-        this.rom.push('00000000000000000000000000000000');
-        this.rom.push('01010000000000000000010000000000');
-        this.rom.push('00000000000000000000000000000000');
+        this.rom.push('01010000000000000000010000000000');//JMP
         this.rom.push('00000000000000000000000000000000');
         this.rom.push('00000000000000000000000000000000');
         this.rom.push('00000000000000000000000000000000');
+        this.rom.push('00000000000000000000000000000000');//NOT DEFINED YET
         this.rom.push('00000000000000000000000000000000');
         this.rom.push('00000000000000000000000000000000');
         this.rom.push('00000000000000000000000000000000');
-        this.rom.push('00000000000001100100000000000000');
+        this.rom.push('00000000000001100100000000000000');//ALU OPERATION
         this.rom.push('00000000000000000000000000000000');
         this.rom.push('00000000000000000000000000000000');
         this.rom.push('00000000000000000000000000000000');
@@ -122,23 +122,35 @@ var Emulator = function(){
         var sreg1 = this.regfile[parseInt(r2,2)];
         var sreg2 = this.regfile[parseInt(r3,2)];
         switch( parseInt(alucode,2) ){
-            case 0:
+            case 0://ADD
                 aluout = signPreceding((parseInt(sreg1,2) + parseInt(sreg2,2)),16);
                 break;
-            case 1:
+            case 1://SUB
                 aluout = signPreceding((parseInt(sreg1,2) - parseInt(sreg2,2)),16);
                 break;
-            case 2:
+            case 2://AND
                 aluout = signPreceding((parseInt(sreg1,2) & parseInt(sreg2,2)),16);
                 break;
-            case 3:
-                aluout = signPreceding(~(parseInt(sreg1,2)),16);
+            case 3://OR
+                aluout = signPreceding((parseInt(sreg1,2) | parseInt(sreg2,2)),16);
                 break;
-            case 4:
-                aluout = zeroPreceding((parseInt(sreg1,2) - parseInt(sreg2,2)).toString(2),16);
+            case 4://XOR
+                aluout = signPreceding((parseInt(sreg1,2) | parseInt(sreg2,2)),16);
                 break;
-            case 5:
-                aluout = zeroPreceding( (parseInt(sreg1,2)).toString(2),16);
+            case 5://NOT
+                aluout = signPreceding(~(parseInt(sreg2,2)),16);
+                break;
+            case 6://MOV
+                aluout = signPreceding(parseInt(sreg2,2),16);
+                break;
+            case 7://INC
+                aluout = signPreceding(parseInt(sreg2,2)+1,16);
+                break;
+            case 7://DEC
+                aluout = signPreceding(parseInt(sreg2,2)-1,16);
+                break;
+            default :
+                //do nothing
         }
 
         //Big MUX
@@ -165,7 +177,7 @@ var Emulator = function(){
         }
 
         if(isSet(sigs,'ZFWT')){
-            console.warn('flagwt');
+            console.warn('ZFWT');
             this.ZF = (aluout == zeros) ? 1:0;
         }
 
@@ -214,29 +226,25 @@ var Emulator = function(){
 };
 
 Emulator.prototype.getControlSignals = function(opcode,zflag){
-    //console.log('this.romAddr: ' + this.romAddr);
+    console.debug('ROM ADDRESS:' + this.romAddr);
     var sigs =  this.rom[this.romAddr];
-    console.log('SIGNAL : ' +  sigs);
-    console.log('ROMADDR: >    ' + this.romAddr);
-    if( sigs.charAt(sigIndex('IRLD')) == '1' ){
-        console.error('getControlSignals');
+    if( sigs.charAt(sigIndex('IRLD')) == '1' || this.romAddr == 0){
         if(zflag == 1 && opcode == '0100'){
             this.romAddr = 20; //(JMP opcode)*4
-            console.error('JMP');
+            console.debug('JMP next Address');
         }
 
         else{
             this.romAddr = parseInt(opcode,2)*4;
-            console.debug('opcode:' + opcode);
-            console.error('NORMAL INST');
+            console.debug('Instruction opcode * 4');
         }
 
     }
     else{
         this.romAddr = parseInt(sigs.substr(26,6),2);
+        console.debug('Next Address');
     }
-    console.log('ROMADDR = ' + this.romAddr);
-    console.log('----------------');
+    console.debug('new ROM ADDRESS:' + this.romAddr);
     return sigs;
 };
 
