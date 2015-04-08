@@ -6,20 +6,7 @@
     <bookmark url="file://$PROJECT_DIR$/simulator/js/controls.js" line="164" mnemonic="1" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d7541dd7-0902-4dee-9802-ac81e94e58d3" name="Default" comment="version 1.0&#10;highlight running code added.&#10;retrieve code templates added.&#10;">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/simulator/fib.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/jquery-1.11.2.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/jquery-1.11.2.min.map" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/jquery.highlighttextarea.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/jquery.highlighttextarea.js" />
-      <change type="DELETED" beforePath="C:\Users\KO\WebstormProjects\baranweb\simulator\cpu.png" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/simulator/cpubest.png" afterPath="$PROJECT_DIR$/simulator/cpubest.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/simulator/js/assembler.js" afterPath="$PROJECT_DIR$/simulator/js/assembler.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/simulator/js/controls.js" afterPath="$PROJECT_DIR$/simulator/js/controls.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/simulator/cpusimulation.css" afterPath="$PROJECT_DIR$/simulator/cpusimulation.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/simulator/js/drawGraphics.js" afterPath="$PROJECT_DIR$/simulator/js/drawGraphics.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/simulator/js/emulator.js" afterPath="$PROJECT_DIR$/simulator/js/emulator.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/simulator/simulator.html" afterPath="$PROJECT_DIR$/simulator/simulator.html" />
+    <list default="true" id="d7541dd7-0902-4dee-9802-ac81e94e58d3" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="baranweb.iws" />
@@ -47,8 +34,8 @@
       <file leaf-file-name="simulator.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/simulator/simulator.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.42777777" vertical-offset="1231" max-vertical-offset="2652">
-              <caret line="86" column="75" selection-start-line="86" selection-start-column="75" selection-end-line="86" selection-end-column="75" />
+            <state vertical-scroll-proportion="0.5222222" vertical-offset="1231" max-vertical-offset="2652">
+              <caret line="89" column="0" selection-start-line="89" selection-start-column="0" selection-end-line="89" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -535,13 +522,20 @@
       <option name="project" value="LOCAL" />
       <updated>1428338813810</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="version 1.0&#10;highlight running code added.&#10;retrieve code templates added.&#10;">
+      <created>1428522709061</created>
+      <option name="number" value="00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1428522709061</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32861635" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32861635" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -557,7 +551,6 @@
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32861635" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
@@ -589,7 +582,8 @@
     <MESSAGE value="All pages added &#10;&#10;" />
     <MESSAGE value="All pages added &#10;&#10;canvas wire, signal paintings done" />
     <MESSAGE value="All pages added &#10;&#10;IR problemi denemesinden önce" />
-    <option name="LAST_COMMIT_MESSAGE" value="All pages added &#10;&#10;IR problemi denemesinden önce" />
+    <MESSAGE value="version 1.0&#10;highlight running code added.&#10;retrieve code templates added.&#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="version 1.0&#10;highlight running code added.&#10;retrieve code templates added.&#10;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -976,8 +970,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/simulator/simulator.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.42777777" vertical-offset="1231" max-vertical-offset="2652">
-          <caret line="86" column="75" selection-start-line="86" selection-start-column="75" selection-end-line="86" selection-end-column="75" />
+        <state vertical-scroll-proportion="0.5222222" vertical-offset="1231" max-vertical-offset="2652">
+          <caret line="89" column="0" selection-start-line="89" selection-start-column="0" selection-end-line="89" selection-end-column="0" />
           <folding />
         </state>
       </provider>
