@@ -122,10 +122,6 @@ function instFormat(instArr,labelArr,variableArr,lineNum){
     }
     //LDI r1 labelname
     else if(instArr[1].toLowerCase() == 'ldi'){
-        console.log(instArr[0]);
-        console.log(instArr[1]);
-        console.log(instArr[2]);
-        console.log(instArr[3]);
         var output = [];
         output.push('0001' + '0000000000' + binary(instArr[2]));
         if(getNode(variableArr,instArr[3]) != null)
@@ -196,15 +192,26 @@ function assembler(inputText){
     var variableArr = [];
     var debugStr = '';
 
+    //calculate line indexes to highlight
+    var codeIndexes = [];//dirty
+    var codeIndexes2 = [] ;//cleaned from empty lines
+
+
     //Remove Blank Lines
-    for(i in codeLines){
+    for(var i in codeLines){
         //if  it's not a blank line add to code Array
         if(!(/^\s*$/.test(codeLines[i]))){
-            codeArr.push(codeLines[i]);
+            codeArr.push(codeLines[parseInt(i)]);
+            codeIndexes.push(parseInt(i)+1);
         }
     }
+    console.warn(codeIndexes);
+
+    //FIRST PASS
+    //FIRST PASS
+    //FIRST PASS
     //first PASS calculate total lines of code, label & var addresses, ...
-    for(i in codeArr){
+    for(var i in codeArr){
         if(regexVariableDec.test(codeArr[i])){
             var parts = regexVariableDec.exec(codeArr[i]);
             variableArr.push(variableObject(parts[1],parts[2],'1','0'));
@@ -229,10 +236,7 @@ function assembler(inputText){
                 }
             }
             lineCounter += (instructionType3.test((codeArr[i]))) ? 2 : 1;
-        }else if(isValidCode(codeArr[i])){
-            //console.log('not counted: ' + codeArr[i]);
         }
-        else ;//console.log('not valid: ' + codeArr[i]);
     }
 
     //modify  variable addresss
@@ -245,7 +249,10 @@ function assembler(inputText){
 
 
 
-    //second PASS
+    //SECOND PASS
+    //SECOND PASS
+    //SECOND PASS
+    //SECOND PASS
     lineCounter = 0;
     for(i in codeArr){
         var inst = codeArr[i];
@@ -256,13 +263,20 @@ function assembler(inputText){
         if(isValidInstruction(inst)){
             instParts = splitInstruction(inst);
             instArr = instArr.concat(instFormat(instParts,labelArr,variableArr,lineCounter));
+            codeIndexes2.push(codeIndexes[i]);
+            if(instructionType3.test(inst)){
+                codeIndexes2.push(codeIndexes[i]);
+            }
 
         }else{
             instArr.push('????????????????');
         }
         lineCounter += (instructionType3.test((codeArr[i]))) ? 2 : 1;
     }
+    console.warn(codeIndexes2);
+    window.globals.codeIndex = codeIndexes2;
 
+    //Place data section to the memory
     for(var i=0;i<variableArr.length;i++){
         for(var j=0;j < parseInt(variableArr[i].size);j++ ){
             var num;
@@ -274,8 +288,6 @@ function assembler(inputText){
         }
     }
 
-    console.log(labelArr);
-    console.log(variableArr);
     if(debugStr != '')console.error(debugStr);
     return instArr;
 };

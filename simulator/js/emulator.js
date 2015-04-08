@@ -21,8 +21,67 @@ var Emulator = function(){
     this.ZF  = 0;
     this.clock = 0;
     this.romAddr = 0; //6 bit rom address register
-    this.sigs = "";
+    this.sigs = "10101000000000000000000000000000";//first signal is fetch
     this.clockFrequency = 1; // in HERTZ
+    this.bigMuxOut;
+    this.aluOut;
+    this.getBigMuxOut = function(){
+        var output = '';
+        switch(parseInt((sig(this.sigs,'MUX1')+sig( this.sigs,'MUX0' )),2)) {
+            case 0:
+                output = this.ram[parseInt(this.AR,2)];
+                break;
+            case 1:
+                output = this.getAluOut();
+                break;
+            case 2:
+                output = this.regfile[parseInt(this.IR.substr(8,2),2)];
+                break;
+            case 3:
+                output = this.regfile[parseInt(this.IR.substr(11,2),2)];
+                break;
+            default:
+                output = '0xNAN'
+        }
+        return output;
+    }
+    this.getAluOut = function(){
+        var sreg1 = this.regfile[parseInt(this.IR.substr(8,2),2)];
+        var sreg2 = this.regfile[parseInt(this.IR.substr(11,2),2)];
+        var output = '0xNAN';
+        switch( parseInt(this.IR.substr(4,4),2) ){
+            case 0://ADD
+                output = signPreceding((parseInt(sreg1,2) + parseInt(sreg2,2)),16);
+                break;
+            case 1://SUB
+                output = signPreceding((parseInt(sreg1,2) - parseInt(sreg2,2)),16);
+                break;
+            case 2://AND
+                output = signPreceding((parseInt(sreg1,2) & parseInt(sreg2,2)),16);
+                break;
+            case 3://OR
+                output = signPreceding((parseInt(sreg1,2) | parseInt(sreg2,2)),16);
+                break;
+            case 4://XOR
+                output = signPreceding((parseInt(sreg1,2) | parseInt(sreg2,2)),16);
+                break;
+            case 5://NOT
+                output = signPreceding(~(parseInt(sreg2,2)),16);
+                break;
+            case 6://MOV
+                output = signPreceding(parseInt(sreg2,2),16);
+                break;
+            case 7://INC
+                output = signPreceding(parseInt(sreg2,2)+1,16);
+                break;
+            case 8://DEC
+                output = signPreceding(parseInt(sreg2,2)-1,16);
+                break;
+            default :
+            //do nothing
+        }
+        return output;
+    }
 
     this.initialize = function(){
         //this.IR = this.ram[0];
@@ -99,55 +158,61 @@ var Emulator = function(){
         this.rom.push('00000100010110010010000001000011');
         this.rom.push('00010010000000000000000101000100');
         this.rom.push('01010000000000000000000010000000');
-        for(var i=0;i<100;i++)
+        var memorySize = Math.pow(2,12);
+        for(var i=0;i<memorySize;i++)
             this.ram.push('0000000000000000');
         };
 
 
     this.nextState = function(){
+
+
         this.clock += 1;
-        var sigs = this.getControlSignals(this.IR.substr(0,4),this.ZF);
-        this.sigs = sigs;
+        var sigs = this.sigs;
+
+
+        if(isSet(sigs,'IRLD')){
+            console.warn('IRLD');
+            this.IR = this.ram[parseInt(this.AR,2)];
+        }
+        //make variables to use them
         var opcode = this.IR.substr(0,4);
         var alucode = this.IR.substr(4,4);
         var r2 = this.IR.substr(8,2);
         var r3 = this.IR.substr(11,2);
         var r1 = this.IR.substr(14,2);
         var jump_addr =  this.IR.substr(4,12);
-        var bigmuxout;
-        var aluout;
-        var ARtemp = this.AR;
 
         //ALU OPERATIONS
         var sreg1 = this.regfile[parseInt(r2,2)];
         var sreg2 = this.regfile[parseInt(r3,2)];
         switch( parseInt(alucode,2) ){
             case 0://ADD
-                aluout = signPreceding((parseInt(sreg1,2) + parseInt(sreg2,2)),16);
+                this.aluOut = signPreceding((parseInt(sreg1,2) + parseInt(sreg2,2)),16);
                 break;
             case 1://SUB
-                aluout = signPreceding((parseInt(sreg1,2) - parseInt(sreg2,2)),16);
+                this.aluOut = signPreceding((parseInt(sreg1,2) - parseInt(sreg2,2)),16);
                 break;
             case 2://AND
-                aluout = signPreceding((parseInt(sreg1,2) & parseInt(sreg2,2)),16);
+                this.aluOut = signPreceding((parseInt(sreg1,2) & parseInt(sreg2,2)),16);
                 break;
             case 3://OR
-                aluout = signPreceding((parseInt(sreg1,2) | parseInt(sreg2,2)),16);
+                this.aluOut = signPreceding((parseInt(sreg1,2) | parseInt(sreg2,2)),16);
                 break;
             case 4://XOR
-                aluout = signPreceding((parseInt(sreg1,2) | parseInt(sreg2,2)),16);
+                this.aluOut = signPreceding((parseInt(sreg1,2) | parseInt(sreg2,2)),16);
                 break;
             case 5://NOT
-                aluout = signPreceding(~(parseInt(sreg2,2)),16);
+                this.aluOut = signPreceding(~(parseInt(sreg2,2)),16);
                 break;
             case 6://MOV
-                aluout = signPreceding(parseInt(sreg2,2),16);
+                this.aluOut = signPreceding(parseInt(sreg2,2),16);
                 break;
             case 7://INC
-                aluout = signPreceding(parseInt(sreg2,2)+1,16);
+                this.aluOut = signPreceding(parseInt(sreg2,2)+1,16);
                 break;
-            case 7://DEC
-                aluout = signPreceding(parseInt(sreg2,2)-1,16);
+            case 8://DEC
+                this.aluOut = signPreceding(parseInt(sreg2,2)-1,16);
                 break;
             default :
                 //do nothing
@@ -156,40 +221,40 @@ var Emulator = function(){
         //Big MUX
         switch(parseInt((sig(this.sigs,'MUX1')+sig( this.sigs,'MUX0' )),2)) {
             case 0:
-                bigmuxout = this.ram[parseInt(this.AR,2)];
+                this.bigMuxOut = this.ram[parseInt(this.AR,2)];
                 break;
             case 1:
-                bigmuxout = aluout;
+                this.bigMuxOut = this.aluOut;
                 break;
             case 2:
-                bigmuxout = this.regfile[parseInt(r2,2)];
+                this.bigMuxOut = this.regfile[parseInt(r2,2)];
                 break;
             case 3:
-                bigmuxout = this.regfile[parseInt(r3,2)];
+                this.bigMuxOut = this.regfile[parseInt(r3,2)];
                 break;
             default:
-                bigmuxout = this.ram[parseInt(this.AR,2)];
+                this.bigMuxOut = this.ram[parseInt(this.AR,2)];
         }
 
         if(isSet(sigs,'REGWT')){
             console.warn('regwt');
-            this.regfile[parseInt(r1,2)] = bigmuxout;
+            this.regfile[parseInt(r1,2)] = this.bigMuxOut;
         }
 
         if(isSet(sigs,'ZFWT')){
             console.warn('ZFWT');
-            this.ZF = (aluout == zeros) ? 1:0;
+            this.ZF = (this.aluOut == zeros) ? 1:0;
         }
 
 
         if(isSet(sigs,'MEMWT')){
             console.warn('MEMWT');
-            this.ram[parseInt(this.AR,2)] = bigmuxout;
+            this.ram[parseInt(this.AR,2)] = this.bigMuxOut;
         }
         if(isSet(sigs,'ARLD')){
             console.warn('ARLD');
             if( !isSet(sigs,'PCLD') && !isSet(sigs,'ARMUX')){
-                this.AR = bigmuxout.substr(4);
+                this.AR = this.bigMuxOut.substr(4);
             }
             else if( !isSet(sigs,'PCLD') && isSet(sigs,'ARMUX')){
                 this.AR = this.PC;
@@ -217,35 +282,28 @@ var Emulator = function(){
             this.PC = signPreceding(parseInt(this.PC,2)+1,12);
         }
 
-        if(isSet(sigs,'IRLD')){
-            console.warn('IRLD');
-            this.IR = this.ram[parseInt(ARtemp,2)];
-        }
+        this.sigs = this.getControlSignals(opcode,this.ZF);
     };
 
 };
 
 Emulator.prototype.getControlSignals = function(opcode,zflag){
     console.debug('ROM ADDRESS:' + this.romAddr);
-    var sigs =  this.rom[this.romAddr];
-    if( sigs.charAt(sigIndex('IRLD')) == '1' || this.romAddr == 0){
+    if( this.romAddr == 0){
         if(zflag == 1 && opcode == '0100'){
             this.romAddr = 20; //(JMP opcode)*4
-            console.debug('JMP next Address');
-        }
-
-        else{
+            console.debug('(JMP opcode)*4');
+        }else{
             this.romAddr = parseInt(opcode,2)*4;
             console.debug('Instruction opcode * 4');
         }
-
     }
     else{
-        this.romAddr = parseInt(sigs.substr(26,6),2);
+        this.romAddr = parseInt(this.sigs.substr(26,6),2);
         console.debug('Next Address');
     }
     console.debug('new ROM ADDRESS:' + this.romAddr);
-    return sigs;
+    return this.rom[this.romAddr];
 };
 
 function sigIndex(signame){

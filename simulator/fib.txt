@@ -1,0 +1,13 @@
+.data
+     fib1: 1
+     fib2: 1
+.code
+     ldi 0 fib1
+loop ld 1 0
+     inc 0
+     ld 2 0
+     add 3 1 2
+     mov 2 0
+     inc 2
+     st 2 3
+     jmp loop

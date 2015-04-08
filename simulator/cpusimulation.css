@@ -29,6 +29,9 @@ textarea.source-code{
     padding-left: 10px;
     padding-right: 10px;
 }
-#rom{
+/*#rom {
     font-size: x-small;
+}*/
+#regs {
+    font-size: small;
 }

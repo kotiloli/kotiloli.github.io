@@ -26,16 +26,21 @@ window.globals = {
         IR:'0x0000',
         FLAGS:'0x0000'
     },
+    wireFLAGOUT: 0,
     selectedReg:NaN,
     wireZF:0,
-    wireClock:0
-    //elem : $("#memory")
+    wireClock:0,
+    clockState:0,
+    elem : $("#memory")[0],
+    codeIndex:null
 };
 
 var emulator = new Emulator();
 emulator.initialize();
 
 var simulationId;
+var running = false;
+var clockStateRisingEdge = true;
 
 $(document).ready(function(){
 
@@ -44,45 +49,106 @@ $(document).ready(function(){
     $("#stop").click(stopSimulation);
     $("#reset").click(resetSimulation);
     $("#assemble").click(assembleCode);
-    $("#rom").val(emulator.rom.join('\n'));
+    updateRom();
     $('#sourceCode').val(readCookie('sourceCode'));
 
    $("#sourceCode").on('change keyup paste', function() {
        //eraseCookie('sourceCode');
         createCookie('sourceCode',$('#sourceCode').val(),365);
     });
-    //window.setInterval(run,800);
+    $('#clockFreq').on('change',function(){
+        var reRun = false;
+        if(running == true) {
+            stopSimulation();
+            reRun = true;
+        }
+        var value = $('#clockFreq').val();
+        emulator.clockFrequency = parseInt(value);
+        if(reRun == true){
+            runSimulation();
+        }
+
+    });
+    jQuery('#fib').click(function(e){
+        $.get( "fib.txt", function( data ) {
+            $( "#sourceCode" ).val(data);
+        });
+        e.preventDefault();
+    });
+
 });
+
+
 
 function assembleCode() {
     var input = $("#sourceCode").val();
-    var hexcodeArr = assembler(input);
-    $("#hexCode").val(hexcodeArr.join('\n'));
-    //initialize emulators ram
-    for(var i=0;i<hexcodeArr.length;i++){
-        emulator.ram[i] = hexcodeArr[i];
+    var bincodeArr = assembler(input);
+    var hexCodeOutput = '';
+    for(var i in bincodeArr){
+        var num = parseInt(bincodeArr[i],2).toString(16);
+        hexCodeOutput += charPreceding(num,'0',4) + '\n';
     }
-    $("#memory").val(emulator.ram.join('\n'));
+    $("#hexCode").val(hexCodeOutput);
+    //initialize emulators ram
+    for(var i=0;i<bincodeArr.length;i++){
+        emulator.ram[i] = bincodeArr[i];
+    }
+    //$("#memory").val(emulator.ram.join('\n'));
+    updateMemory();
     debug();
+    makeCanvasUpdates();
+    $('#sourceCode').highlightTextarea('enable');
+    $('#memory').highlightTextarea('enable');
+    $('#rom').highlightTextarea('enable');
+}
+
+function updateMemory(){
+    var output = '';
+    console.time('Update');
+    for(var i=0;i<200;i++){
+        output += charPreceding(parseInt(i).toString(16),'0',3) + '  ' + emulator.ram[i] + '\n';
+        //output +=  emulator.ram[i] + '\n';
+        console.log('.');
+    }
+    output += '...\n..\n.';
+    //output = emulator.ram.join('\n');
+    $("#memory").val(output);
+    console.timeEnd('Update');
+}
+function updateRom(){
+    var output = '';
+    for(var i=0;i<emulator.rom.length;i++){
+        output += charPreceding(parseInt(i).toString(16),'0',3) + '  ' + emulator.rom[i] + '\n';
+    }
+    $("#rom").val(output);
+
 }
 function resetSimulation(){
     stopSimulation();
     $('#run').prop('disabled', false);
+    var oldClockFreq = emulator.clockFrequency;
     emulator = new Emulator();
     emulator.initialize();
+    emulator.clockFrequency = oldClockFreq;
+    window.globals.clockState = 0;
     $('#memory').val('');
     makeCanvasUpdates();
+    $('#sourceCode').highlightTextarea('disable');
+    $('#memory').highlightTextarea('disable');
+    $('#rom').highlightTextarea('disable');
     debug();
 
 }
 function runSimulation(){
-    emulator.clockFrequency = 10;
+    running = true;
     $('#run').prop('disabled', true);
     $('#step').prop('disabled', true);
     simulationId = window.setInterval(nextStep,(1/emulator.clockFrequency)*1000 );
+    console.log('FREQ:' + (1/emulator.clockFrequency)*1000);
 }
 
 function stopSimulation(){
+    running = false;
     $('#run').prop('disabled', false);
     $('#step').prop('disabled', false);
     clearInterval(simulationId);
@@ -90,10 +156,28 @@ function stopSimulation(){
 
 
 function nextStep(){
-    emulator.nextState();
-    makeCanvasUpdates();
-    $("#memory").val(emulator.ram.join('\n'));
-    debug();
+    if(clockStateRisingEdge){
+        var romAddr = emulator.romAddr;
+        lineHighLight('#rom',romAddr+1);
+        if(isSet(emulator.sigs,'IRLD')){
+            var memoryAddress = parseInt(emulator.AR,2);
+            var sourceCodeLineNum = window.globals.codeIndex[memoryAddress];
+            lineHighLight('#sourceCode',sourceCodeLineNum);
+            lineHighLight('#memory',memoryAddress+1);
+
+        }
+
+        emulator.nextState();
+        makeCanvasUpdates();
+        //$("#memory").val(emulator.ram.join('\n'));
+        updateMemory();
+        debug();
+        clockStateRisingEdge = false;
+        window.globals.clockState = 1;
+    }else{
+        clockStateRisingEdge = true;
+        window.globals.clockState = 0;
+    }
 }
 
 function debug(){
@@ -104,7 +188,6 @@ function debug(){
     debugInfo += 'REG1  : ' + emulator.regfile[1] + '\t';debugInfo += 'PC    : ' + emulator.PC + '\n';
     debugInfo += 'REG2  : ' + emulator.regfile[2] + '\t';debugInfo += 'AR    : ' + emulator.AR + '\n';
     debugInfo += 'REG3  : ' + emulator.regfile[3] + '\n';
-
 
     debugInfo += 'romAdr: ' + emulator.romAddr + '\t';debugInfo += 'sigs  : ' + emulator.sigs; + '\n';
     debugInfo += '\n';
@@ -118,22 +201,13 @@ function debug(){
     debugInfo += '   MEMWT :' + sig(emulator.sigs,'MEMWT');
     debugInfo += '   MUX1  :' + sig(emulator.sigs,'MUX1');
     debugInfo += '   MUX0  :' + sig(emulator.sigs,'MUX0');
-    debugInfo += '   ZFWT  :' + sig(emulator.sigs,'ZFWT');
+    debugInfo += '   ZFWT  :' + sig(emulator.sigs,'ZFWT')  + '\n';
+    debugInfo += '   aluout  :Ox' + parseInt(emulator.aluOut,2).toString(16);
+    debugInfo += '   bigMuxOut  :Ox' + parseInt(emulator.bigMuxOut,2).toString(16);
 
     $("#regs").val(debugInfo);
 };
 
-/*
-var signalIndex = {
-    IRLD:31,PCLD:30,PCINC:29,ARLD:28,
-    ARINC:27,ARDEC:26,INTMUX:25,ARMUX:24,
-    SPINC:23,SPDEC:22,SPLD:21,MUX2:20,
-    MUX1:19,MUX0:18,REGWT:17,MEMWT:16,
-    FLAGWT:15,ZFWT:14,IFSET:13,IFRESET:12,
-    NOTDEFINED1:11,NOTDEFINED2:10,NOTDEFINED3:9,INTACK:8,
-    PCWTDIRECT:7
-};
-*/
 
 function makeCanvasUpdates(){
     window.globals.signal.ARMUX  = isSet(emulator.sigs, 'ARMUX') ?  1:0;
@@ -150,6 +224,7 @@ function makeCanvasUpdates(){
 
     //window.globals.selectedReg = randomInt(4); //TODO
     window.globals.wireZF = emulator.ZF;
+    window.globals.wireFLAGOUT = parseInt(emulator.getAluOut(),2) == 0 ? 1:0 ;
 
     window.globals.regs.R0 = '0x' + parseInt(emulator.regfile[0],2).toString(16);
     window.globals.regs.R1 = '0x' + parseInt(emulator.regfile[1],2).toString(16);
@@ -188,3 +263,43 @@ function readCookie(name) {
 function eraseCookie(name) {
     createCookie(name,"",-1);
 }
+function charPreceding(str,char,length){
+    //for(var i=0;i<20;i++)
+    //    char += char;
+    char = char+char+char+char;
+    char = char+char+char+char;
+    //char = '00000000000000000000000';
+    var output = char + str;
+    return output.substr(-1*length);
+}
+
+function lineHighLight(query,lineNum){
+    var text = $(query).val();
+    var start;
+    var end  =0;
+    var lineCounter = 1;
+    while(true){
+        start = end;
+        end = text.indexOf('\n',start+1);
+        if(end == -1){
+            end = text.length;
+            break;
+        }
+        if( lineCounter == lineNum)
+            break;
+        lineCounter++;
+    }
+    $(query).highlightTextarea('setRanges',[[start,end]]);
+    ScrollToLine(query,lineNum);
+}
+
+function ScrollToLine(query,lineNum){
+    var elem = $(query)[0];
+    console.log('scrollTop:' + elem.scrollTop);
+    console.log('elem.clientHeight:' + elem.clientHeight);
+    var lineHeight = elem.clientHeight / elem.rows;
+    console.log('Line Height :' + lineHeight );
+    var jump = (lineNum) * lineHeight / 1.05 - (lineHeight * elem.rows/2);///1.2175
+    elem.scrollTop = jump;
+}
+
